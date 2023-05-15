@@ -30,7 +30,7 @@ To get a local copy up and running follow these steps.
 ### Installation
 
 1. Clone the repository
-2. open project
+2. Open project
 3. Create a new database in MySQL called powerup-small-square
 4. Update the database connection settings
    ```yml
@@ -41,7 +41,8 @@ To get a local copy up and running follow these steps.
           username: root
           password: <your-password>
    ```
-5. make sure you have the users microservice running and that it is at version 1.1
+5. Make sure you have the users microservice running and that it is at version 1.1
+6. You must send the bearer token to be able to use this microservice
 <!-- USAGE -->
 ## Usage
 
