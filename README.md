@@ -41,7 +41,7 @@ To get a local copy up and running follow these steps.
           username: root
           password: <your-password>
    ```
-5. make sure you have the users microservice running and that it is at version 1.0
+5. make sure you have the users microservice running and that it is at version 1.1
 <!-- USAGE -->
 ## Usage
 
