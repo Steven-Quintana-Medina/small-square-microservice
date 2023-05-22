@@ -14,16 +14,21 @@ public class Constants {
 
     //response code 200
     public static final String RESTAURANT_CREATED_MESSAGE = "Restaurant created successfully";
+    public static final String DISH_CREATED_MESSAGE = "Dish created successfully";
+
+    //response code 400
     public static final String INVALID_PHONE = "A restaurant has an invalid phone number";
     public static final String INVALID_NAME = "A restaurant has an invalid name";
     public static final String INVALID_NIT = "A restaurant has an invalid nit";
     public static final String INVALID_USER = "Person is not an owner";
 
     public static final String WRONG_CREDENTIALS_MESSAGE = "Wrong credentials";
-    public static final String WRONG_CREDENTIALS_FEING_MESSAGE = "Wrong credentials microservice";
-
     public static final String NIT_ALREADY_EXISTS_MESSAGE = "A restaurant with that nit already exists";
     public static final String PHONE_ALREADY_EXISTS_MESSAGE = "A restaurant with that phone already exists";
+    public static final String CATEGORY_NOT_FOUND = "A category not found";
+    public static final String RESTAURANT_NOT_FOUND = "A restaurant not found";
+
+
 
     //swagger
     public static final String SWAGGER_TITLE_MESSAGE = "User API Pragma Power Up";
@@ -33,5 +38,7 @@ public class Constants {
     public static final String SWAGGER_LICENSE_URL_MESSAGE = "https://springdoc.org/v2/";
     public static final String SWAGGER_TERMS_OF_SERVICE_MESSAGE = "http://swagger.io/terms/";
     public static final String SWAGGER_RESTAURANT_ERROR = "Problems registering a person";
+    public static final String SWAGGER_DISH_ERROR = "Problems creating a dish";
+
 
 }

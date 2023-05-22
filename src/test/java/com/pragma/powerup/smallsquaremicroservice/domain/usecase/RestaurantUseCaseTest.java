@@ -1,7 +1,6 @@
 package com.pragma.powerup.smallsquaremicroservice.domain.usecase;
 
 import com.pragma.powerup.smallsquaremicroservice.domain.datasource.IUserClientPort;
-import com.pragma.powerup.smallsquaremicroservice.domain.exceptions.InvalidNitException;
 import com.pragma.powerup.smallsquaremicroservice.domain.model.Restaurant;
 import com.pragma.powerup.smallsquaremicroservice.domain.spi.IRestaurantPersistencePort;
 import com.pragma.powerup.smallsquaremicroservice.domain.usercase.RestaurantUseCase;
@@ -13,7 +12,6 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static com.pragma.powerup.smallsquaremicroservice.domain.utils.RestaurantModelValues.INSTANCE_RESTAURANT;
-import static com.pragma.powerup.smallsquaremicroservice.domain.utils.RestaurantModelValues.INVALID_OWNER;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
@@ -31,8 +29,6 @@ public class RestaurantUseCaseTest {
         MockitoAnnotations.openMocks(this);
         restaurantUseCaseMock = new RestaurantUseCase(restaurantPersistencePort,userClientPort);
     }
-
-    private Restaurant restaurantMock;
 
     @Test
     public void testSaveOwner() {
