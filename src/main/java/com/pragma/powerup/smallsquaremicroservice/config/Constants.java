@@ -15,6 +15,7 @@ public class Constants {
     //response code 200
     public static final String RESTAURANT_CREATED_MESSAGE = "Restaurant created successfully";
     public static final String DISH_CREATED_MESSAGE = "Dish created successfully";
+    public static final String DISH_UPDATE_MESSAGE = "Dish Update successfully";
 
     //response code 400
     public static final String INVALID_PHONE = "A restaurant has an invalid phone number";
@@ -26,9 +27,7 @@ public class Constants {
     public static final String NIT_ALREADY_EXISTS_MESSAGE = "A restaurant with that nit already exists";
     public static final String PHONE_ALREADY_EXISTS_MESSAGE = "A restaurant with that phone already exists";
     public static final String CATEGORY_NOT_FOUND = "A category not found";
-    public static final String RESTAURANT_NOT_FOUND = "A restaurant not found";
-
-
+    public static final String DISH_NOT_FOUND = "A dish not found";
 
     //swagger
     public static final String SWAGGER_TITLE_MESSAGE = "User API Pragma Power Up";

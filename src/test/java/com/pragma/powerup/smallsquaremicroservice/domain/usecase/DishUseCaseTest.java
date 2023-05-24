@@ -28,8 +28,8 @@ public class DishUseCaseTest {
 
     @Test
     public void testSaveDish() {
-        dishUseCaseMock.saveDish(INSTANCE_DISH);
-        verify(dishPersistencePortMock).saveDish(INSTANCE_DISH);
+        dishUseCaseMock.saveDish(INSTANCE_DISH,1L);
+        verify(dishPersistencePortMock).saveDish(INSTANCE_DISH,1L);
     }
 
 }

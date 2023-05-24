@@ -1,8 +1,9 @@
 package com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.adapter;
 
+import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.entity.DishEntity;
 import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.exceptions.CategoryNotFoundException;
-import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.exceptions.NitAlreadyExistsException;
-import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.exceptions.RestaurantNotFoundException;
+import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.exceptions.DishNotFoundException;
+import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.exceptions.UnauthorizedUserException;
 import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.mappers.IDishEntityMapper;
 import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.repositories.ICategoryRepository;
 import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.repositories.IDishRepository;
@@ -19,9 +20,20 @@ public class DishMysqlAdapter implements IDishPersistencePort {
     private final IRestaurantRepository restaurantRepository;
 
     @Override
-    public void saveDish(Dish dish) {
-        restaurantRepository.findById(dish.getIdRestaurant().getId()).orElseThrow(RestaurantNotFoundException::new);
+    public void saveDish(Dish dish, Long idUser) {
+        restaurantRepository.findByIdAndIdOwner(dish.getIdRestaurant().getId(),idUser).orElseThrow(UnauthorizedUserException::new);
         categoryRepository.findById(dish.getIdCategory().getId()).orElseThrow(CategoryNotFoundException::new);
         dishRepository.save(dishEntityMapper.toEntity(dish));
+    }
+
+    @Override
+    public void updateDish(Dish dish, Long idUser) {
+        DishEntity dishUpdate = dishRepository.findById(dish.getId()).orElseThrow(DishNotFoundException::new);
+        if(!dishUpdate.getIdRestaurant().getIdOwner().equals(idUser)){
+            throw new UnauthorizedUserException();
+        }
+        dishUpdate.setPrice(dish.getPrice());
+        dishUpdate.setDescription(dish.getDescription());
+        dishRepository.save(dishUpdate);
     }
 }

@@ -1,9 +1,6 @@
 package com.pragma.powerup.smallsquaremicroservice.config;
 
-import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.exceptions.CategoryNotFoundException;
-import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.exceptions.NitAlreadyExistsException;
-import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.exceptions.PhoneAlreadyExistsException;
-import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.exceptions.RestaurantNotFoundException;
+import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.exceptions.*;
 import com.pragma.powerup.smallsquaremicroservice.domain.exceptions.InvalidNameException;
 import com.pragma.powerup.smallsquaremicroservice.domain.exceptions.InvalidNitException;
 import com.pragma.powerup.smallsquaremicroservice.domain.exceptions.InvalidPhoneException;
@@ -11,6 +8,7 @@ import com.pragma.powerup.smallsquaremicroservice.domain.exceptions.InvalidUserE
 import feign.FeignException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -46,45 +44,50 @@ public class ControllerAdvisor {
     }
 
     @ExceptionHandler(PhoneAlreadyExistsException.class)
-    public ResponseEntity<Map<String, String>> handlePhoneAlreadyExistsException() {
+    public ResponseEntity<Map<String, String>> handlerPhoneAlreadyExistsException() {
         return ResponseEntity.status(HttpStatus.CONFLICT)
                 .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, PHONE_ALREADY_EXISTS_MESSAGE));
     }
 
     @ExceptionHandler(NitAlreadyExistsException.class)
-    public ResponseEntity<Map<String, String>> handleNitAlreadyExistsException() {
+    public ResponseEntity<Map<String, String>> handlerNitAlreadyExistsException() {
         return ResponseEntity.status(HttpStatus.CONFLICT)
                 .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, NIT_ALREADY_EXISTS_MESSAGE));
     }
 
     @ExceptionHandler(FeignException.class)
-    public ResponseEntity<Map<String, String>> handleUnauthorizedException() {
+    public ResponseEntity<Map<String, String>> handlerUnauthorizedException() {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                 .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, WRONG_CREDENTIALS_MESSAGE));
     }
 
     @ExceptionHandler(NullPointerException.class)
-    public ResponseEntity<Map<String, String>> handleNullPointerException(NullPointerException nullPointerException) {
+    public ResponseEntity<Map<String, String>> handlerNullPointerException(NullPointerException nullPointerException) {
         return ResponseEntity.status(HttpStatus.CONFLICT)
                 .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, nullPointerException.getMessage()));
     }
 
     @ExceptionHandler(IllegalStateException.class)
-    public ResponseEntity<Map<String, String>> handleIllegalStateException(IllegalStateException IllegalStateException) {
+    public ResponseEntity<Map<String, String>> handlerIllegalStateException(IllegalStateException IllegalStateException) {
         return ResponseEntity.status(HttpStatus.CONFLICT)
                 .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, IllegalStateException.getMessage()));
     }
 
     @ExceptionHandler(CategoryNotFoundException.class)
-    public ResponseEntity<Map<String, String>> handleCategoryNotFoundException() {
+    public ResponseEntity<Map<String, String>> handlerCategoryNotFoundException() {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, CATEGORY_NOT_FOUND));
     }
 
-    @ExceptionHandler(RestaurantNotFoundException.class)
-    public ResponseEntity<Map<String, String>> handleRestaurantNotFoundException() {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, RESTAURANT_NOT_FOUND));
+    @ExceptionHandler(UnauthorizedUserException.class)
+    public ResponseEntity<Map<String, String>> handlerUnauthorizedUserException() {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, WRONG_CREDENTIALS_MESSAGE));
     }
 
+    @ExceptionHandler(AuthenticationException.class)
+    public ResponseEntity<Map<String, String>> handleAuthenticationException(AuthenticationException noDataFoundException) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, WRONG_CREDENTIALS_MESSAGE));
+    }
 }

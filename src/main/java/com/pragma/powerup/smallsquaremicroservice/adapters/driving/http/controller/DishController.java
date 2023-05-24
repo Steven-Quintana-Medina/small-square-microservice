@@ -1,6 +1,7 @@
 package com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.controller;
 
 import com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.dto.req.DishReqDto;
+import com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.dto.req.DishUpdateReqDto;
 import com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.handlers.IDishHandler;
 import com.pragma.powerup.smallsquaremicroservice.config.Constants;
 import io.swagger.v3.oas.annotations.Operation;
@@ -12,10 +13,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.Map;
@@ -44,4 +43,13 @@ public class DishController {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY, DISH_CREATED_MESSAGE));
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Map<String, String>> updateDish(@PathVariable Long id, @RequestBody DishUpdateReqDto dishUpdateReqDto) {
+        dishUpdateReqDto.setId(id);
+        dishHandler.updateDish(dishUpdateReqDto);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY, DISH_UPDATE_MESSAGE));
+    }
+
 }
