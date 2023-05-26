@@ -22,7 +22,7 @@ import java.util.Map;
 import static com.pragma.powerup.smallsquaremicroservice.config.Constants.*;
 
 @RestController
-@RequestMapping("/dish")
+@RequestMapping("/dish/")
 @RequiredArgsConstructor
 @Tag(name = "Dish", description = "Endpoints related to dish")
 @SecurityRequirement(name = "jwt")
