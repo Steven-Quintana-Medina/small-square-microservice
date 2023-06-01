@@ -2,6 +2,7 @@ package com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.control
 
 import com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.dto.req.DishReqDto;
 import com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.dto.req.DishUpdateReqDto;
+import com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.dto.req.DishUpdateStatusReqDto;
 import com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.handlers.IDishHandler;
 import com.pragma.powerup.smallsquaremicroservice.config.Constants;
 import io.swagger.v3.oas.annotations.Operation;
@@ -22,7 +23,7 @@ import java.util.Map;
 import static com.pragma.powerup.smallsquaremicroservice.config.Constants.*;
 
 @RestController
-@RequestMapping("/dish/")
+@RequestMapping("/dish")
 @RequiredArgsConstructor
 @Tag(name = "Dish", description = "Endpoints related to dish")
 @SecurityRequirement(name = "jwt")
@@ -48,6 +49,14 @@ public class DishController {
     public ResponseEntity<Map<String, String>> updateDish(@PathVariable Long id, @RequestBody DishUpdateReqDto dishUpdateReqDto) {
         dishUpdateReqDto.setId(id);
         dishHandler.updateDish(dishUpdateReqDto);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY, DISH_UPDATE_MESSAGE));
+    }
+
+    @PutMapping("/status/{id}")
+    public ResponseEntity<Map<String, String>> updateStatusDish(@PathVariable Long id, @RequestBody DishUpdateStatusReqDto dishUpdateStatusReqDto) {
+        dishUpdateStatusReqDto.setId(id);
+        dishHandler.updateDishStatus(dishUpdateStatusReqDto);
         return ResponseEntity.status(HttpStatus.OK)
                 .body(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY, DISH_UPDATE_MESSAGE));
     }

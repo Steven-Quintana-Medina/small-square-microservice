@@ -2,6 +2,7 @@ package com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.handler
 
 import com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.dto.req.DishReqDto;
 import com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.dto.req.DishUpdateReqDto;
+import com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.dto.req.DishUpdateStatusReqDto;
 import com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.handlers.IDishHandler;
 import com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.mappers.req.IDishReqMapper;
 import com.pragma.powerup.smallsquaremicroservice.config.security.jwt.JwtService;
@@ -27,5 +28,10 @@ public class IDishHandlerImpl implements IDishHandler {
     @Override
     public void updateDish(DishUpdateReqDto dishUpdateReqDto) {
         dishServicePort.updateDish(dishReqMapper.toDish(dishUpdateReqDto), jwtService.getIdToken(request.getHeader("Authorization")));
+    }
+
+    @Override
+    public void updateDishStatus(DishUpdateStatusReqDto dishUpdateStatusReqDto) {
+        dishServicePort.updateDishStatus(dishReqMapper.toDish(dishUpdateStatusReqDto),jwtService.getIdToken(request.getHeader("Authorization")));
     }
 }

@@ -5,7 +5,7 @@ import com.pragma.powerup.smallsquaremicroservice.domain.model.Dish;
 import com.pragma.powerup.smallsquaremicroservice.domain.spi.IDishPersistencePort;
 
 public class DishUseCase implements IDishServicePort {
-    private IDishPersistencePort dishPersistencePort;
+    private final IDishPersistencePort dishPersistencePort;
 
     public DishUseCase(IDishPersistencePort dishesPersistencePort) {
         this.dishPersistencePort = dishesPersistencePort;
@@ -19,5 +19,10 @@ public class DishUseCase implements IDishServicePort {
     @Override
     public void updateDish(Dish dish, Long idUser) {
         dishPersistencePort.updateDish(dish,idUser);
+    }
+
+    @Override
+    public void updateDishStatus(Dish dish, Long idUser) {
+        dishPersistencePort.updateDishStatus(dish,idUser);
     }
 }

@@ -8,14 +8,16 @@ public class Dish {
     private String urlImage;
     private Category idCategory;
     private Restaurant idRestaurant;
+    private boolean status;
 
-    public Dish(String name, double price, String description, String urlImage, Category idCategory,Restaurant idRestaurant) {
+    public Dish(String name, double price, String description, String urlImage, Category idCategory,Restaurant idRestaurant,boolean status) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.urlImage = urlImage;
         this.idCategory = idCategory;
         this.idRestaurant = idRestaurant;
+        this.status = status;
     }
 
     public Long getId() {
@@ -73,4 +75,14 @@ public class Dish {
     public void setIdRestaurant(Restaurant idRestaurant) {
         this.idRestaurant = idRestaurant;
     }
+
+    public boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+
 }

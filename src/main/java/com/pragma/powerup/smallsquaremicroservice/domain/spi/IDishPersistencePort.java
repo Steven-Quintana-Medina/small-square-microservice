@@ -6,4 +6,5 @@ import com.pragma.powerup.smallsquaremicroservice.domain.model.Dish;
 public interface IDishPersistencePort {
     void saveDish(Dish dish,Long idUser);
     void updateDish(Dish dish,Long idUser);
+    void updateDishStatus(Dish dish,Long idUser);
 }
