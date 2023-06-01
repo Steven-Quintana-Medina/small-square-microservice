@@ -6,6 +6,10 @@ import com.pragma.powerup.smallsquaremicroservice.domain.model.Restaurant;
 import com.pragma.powerup.smallsquaremicroservice.domain.spi.IRestaurantPersistencePort;
 import com.pragma.powerup.smallsquaremicroservice.domain.services.RestaurantService;
 
+import java.util.List;
+
+import static com.pragma.powerup.smallsquaremicroservice.domain.services.RestaurantService.validRange;
+
 public class RestaurantUseCase implements IRestaurantServicePort {
     private final IRestaurantPersistencePort restaurantPersistencePort;
     private final IUserClientPort userClientPort;
@@ -25,4 +29,12 @@ public class RestaurantUseCase implements IRestaurantServicePort {
 
         restaurantPersistencePort.saveRestaurant(restaurant);
     }
+
+    @Override
+    public List<Restaurant> getAllRestaurant(int pageNumber, int pageSize) {
+        validRange(pageNumber,pageSize);
+        pageNumber-=1;
+        return restaurantPersistencePort.getAllRestaunrat(pageNumber,pageSize);
+    }
+
 }

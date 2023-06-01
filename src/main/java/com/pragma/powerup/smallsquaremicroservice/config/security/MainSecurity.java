@@ -5,6 +5,7 @@ import com.pragma.powerup.smallsquaremicroservice.config.security.jwt.JwtTokenFi
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -34,6 +35,7 @@ public class MainSecurity {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeHttpRequests(requests -> requests.requestMatchers("/actuator/health", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/restaurant/").permitAll()
                         .requestMatchers("/restaurant/**").hasRole("ADMIN")
                         .requestMatchers("/dish/**").hasRole("OWNER")
                         .anyRequest().authenticated()).formLogin().and().httpBasic().disable()

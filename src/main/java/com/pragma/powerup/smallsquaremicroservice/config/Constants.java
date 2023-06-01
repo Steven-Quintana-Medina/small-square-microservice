@@ -23,11 +23,12 @@ public class Constants {
     public static final String INVALID_NIT = "A restaurant has an invalid nit";
     public static final String INVALID_USER = "Person is not an owner";
 
+    public static final String INVALID_RANGE = "You must enter numbers greater than 0";
+
     public static final String WRONG_CREDENTIALS_MESSAGE = "Wrong credentials";
     public static final String NIT_ALREADY_EXISTS_MESSAGE = "A restaurant with that nit already exists";
     public static final String PHONE_ALREADY_EXISTS_MESSAGE = "A restaurant with that phone already exists";
     public static final String CATEGORY_NOT_FOUND = "A category not found";
-    public static final String DISH_NOT_FOUND = "A dish not found";
 
     //swagger
     public static final String SWAGGER_TITLE_MESSAGE = "User API Pragma Power Up";

@@ -1,10 +1,7 @@
 package com.pragma.powerup.smallsquaremicroservice.config;
 
 import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.exceptions.*;
-import com.pragma.powerup.smallsquaremicroservice.domain.exceptions.InvalidNameException;
-import com.pragma.powerup.smallsquaremicroservice.domain.exceptions.InvalidNitException;
-import com.pragma.powerup.smallsquaremicroservice.domain.exceptions.InvalidPhoneException;
-import com.pragma.powerup.smallsquaremicroservice.domain.exceptions.InvalidUserException;
+import com.pragma.powerup.smallsquaremicroservice.domain.exceptions.*;
 import feign.FeignException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -89,5 +86,17 @@ public class ControllerAdvisor {
     public ResponseEntity<Map<String, String>> handleAuthenticationException(AuthenticationException noDataFoundException) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                 .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, WRONG_CREDENTIALS_MESSAGE));
+    }
+
+    @ExceptionHandler(InvalidRangeException.class)
+    public ResponseEntity<Map<String, String>> handlerInvalidRangeException() {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, INVALID_RANGE));
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<Map<String, String>> handlerInvalidRangeException(IllegalArgumentException illegalArgumentException) {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, illegalArgumentException.getMessage()));
     }
 }

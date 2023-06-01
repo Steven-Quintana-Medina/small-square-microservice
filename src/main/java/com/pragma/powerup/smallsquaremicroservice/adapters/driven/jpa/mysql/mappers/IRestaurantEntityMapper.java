@@ -4,6 +4,10 @@ import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.enti
 import com.pragma.powerup.smallsquaremicroservice.domain.model.Restaurant;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
+import org.springframework.data.domain.Page;
+
+import java.awt.print.Pageable;
+import java.util.List;
 
 @Mapper(componentModel = "spring",
         unmappedTargetPolicy = ReportingPolicy.IGNORE,
@@ -11,4 +15,5 @@ import org.mapstruct.ReportingPolicy;
 )
 public interface IRestaurantEntityMapper {
     RestaurantEntity toEntity(Restaurant restaurant);
+  List<Restaurant> toRestaurant(Page<RestaurantEntity> restaurantEntity);
 }

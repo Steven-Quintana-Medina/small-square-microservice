@@ -1,16 +1,18 @@
 package com.pragma.powerup.smallsquaremicroservice.domain.services;
 
-import com.pragma.powerup.smallsquaremicroservice.domain.datasource.IUserClientPort;
-import com.pragma.powerup.smallsquaremicroservice.domain.exceptions.InvalidNameException;
-import com.pragma.powerup.smallsquaremicroservice.domain.exceptions.InvalidNitException;
-import com.pragma.powerup.smallsquaremicroservice.domain.exceptions.InvalidPhoneException;
-import com.pragma.powerup.smallsquaremicroservice.domain.exceptions.InvalidUserException;
+import com.pragma.powerup.smallsquaremicroservice.domain.exceptions.*;
 
 import static com.pragma.powerup.smallsquaremicroservice.domain.utils.Constants.REGEX_NUM_VALUES;
 import static com.pragma.powerup.smallsquaremicroservice.domain.utils.Constants.REGEX_VALID_PHONE;
 
 
 public class RestaurantService {
+
+    public static void validRange(int pageNumber, int pageSize){
+        if(pageNumber<=0 || pageSize<=0){
+            throw new InvalidRangeException();
+        }
+    }
 
     public static void ValidUser(boolean user){
         if(!user){
