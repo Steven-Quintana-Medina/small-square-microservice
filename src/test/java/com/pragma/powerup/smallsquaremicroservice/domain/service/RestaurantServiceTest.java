@@ -45,16 +45,16 @@ public class RestaurantServiceTest {
     @Test
     public void testValidPageNumberAndPageSizeWithInvalidRange(){
         for (int invalidRange: INVALID_RANGE){
-            assertThrows(InvalidRangeException.class,()->RestaurantService.validPageNumberAndPageSize(invalidRange,invalidRange));
+            assertThrows(InvalidRangeException.class,()->RestaurantService.validRange(invalidRange,invalidRange));
         }
-        assertThrows(InvalidRangeException.class,()->RestaurantService.validPageNumberAndPageSize(INVALID_RANGE[0], 5));
+        assertThrows(InvalidRangeException.class,()->RestaurantService.validRange(INVALID_RANGE[0], 5));
 
     }
 
     @Test
     public void testValidPageNumber(){
         for (int validRange: VALID_RANGE){
-            assertDoesNotThrow(()->RestaurantService.validPageNumberAndPageSize(validRange,validRange));
+            assertDoesNotThrow(()->RestaurantService.validRange(validRange,validRange));
         }
 
     }
