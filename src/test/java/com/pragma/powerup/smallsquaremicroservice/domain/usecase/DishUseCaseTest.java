@@ -1,20 +1,15 @@
 package com.pragma.powerup.smallsquaremicroservice.domain.usecase;
 
 
-import com.pragma.powerup.smallsquaremicroservice.domain.model.Dish;
 import com.pragma.powerup.smallsquaremicroservice.domain.spi.IDishPersistencePort;
 import com.pragma.powerup.smallsquaremicroservice.domain.usercase.DishUseCase;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static com.pragma.powerup.smallsquaremicroservice.domain.utils.DishModelValues.INSTANCE_DISH;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)

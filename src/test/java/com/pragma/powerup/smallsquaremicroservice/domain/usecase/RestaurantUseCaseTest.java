@@ -30,5 +30,15 @@ public class RestaurantUseCaseTest {
         verify(restaurantPersistencePort).saveRestaurant(INSTANCE_RESTAURANT);
     }
 
+    @Test
+    void testGetAllRestaurat() {
+        int pageNumber = 1;
+        int pageSize = 1;
+        restaurantUseCaseMock.getAllRestaurant(pageNumber, pageSize);
+        verify(restaurantPersistencePort).getAllRestaunrat(pageNumber -= 1, pageSize);
+
+
+    }
+
 
 }

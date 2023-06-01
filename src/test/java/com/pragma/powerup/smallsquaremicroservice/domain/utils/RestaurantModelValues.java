@@ -17,4 +17,7 @@ public class RestaurantModelValues {
     public static final boolean INVALID_OWNER = false;
     public static final String INVALID_NAME = "0000031";
     public static final String[] VALID_NAME = {"CODIGO_","PUERTO 003"};
+
+    public static final int[] INVALID_RANGE = {-157,0,-50};
+    public static final int[] VALID_RANGE ={156,2,508};
 }

@@ -1,9 +1,6 @@
 package com.pragma.powerup.smallsquaremicroservice.domain.service;
 
-import com.pragma.powerup.smallsquaremicroservice.domain.exceptions.InvalidNameException;
-import com.pragma.powerup.smallsquaremicroservice.domain.exceptions.InvalidNitException;
-import com.pragma.powerup.smallsquaremicroservice.domain.exceptions.InvalidPhoneException;
-import com.pragma.powerup.smallsquaremicroservice.domain.exceptions.InvalidUserException;
+import com.pragma.powerup.smallsquaremicroservice.domain.exceptions.*;
 import com.pragma.powerup.smallsquaremicroservice.domain.services.RestaurantService;
 
 import org.junit.jupiter.api.Test;
@@ -44,6 +41,24 @@ public class RestaurantServiceTest {
             assertDoesNotThrow(() -> RestaurantService.ValidName(validName));
         }
     }
+
+    @Test
+    public void testValidPageNumberAndPageSizeWithInvalidRange(){
+        for (int invalidRange: INVALID_RANGE){
+            assertThrows(InvalidRangeException.class,()->RestaurantService.validPageNumberAndPageSize(invalidRange,invalidRange));
+        }
+        assertThrows(InvalidRangeException.class,()->RestaurantService.validPageNumberAndPageSize(INVALID_RANGE[0], 5));
+
+    }
+
+    @Test
+    public void testValidPageNumber(){
+        for (int validRange: VALID_RANGE){
+            assertDoesNotThrow(()->RestaurantService.validPageNumberAndPageSize(validRange,validRange));
+        }
+
+    }
+
 
 
 }
