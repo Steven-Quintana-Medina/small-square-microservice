@@ -32,17 +32,20 @@ To get a local copy up and running follow these steps.
 1. Clone the repository
 2. Open project
 3. Create a new database in MySQL called powerup-small-square
-4. Update the database connection settings
-   ```yml
-   # src/main/resources/application-dev.yml
-   spring:
-      datasource:
-          url: jdbc:mysql://localhost/powerup-small-square
-          username: root
-          password: <your-password>
-   ```
-5. Make sure you have the users microservice running and that it is at version 1.1
-6. You must send the bearer token to be able to use this microservice
+4. update environment variables
+   <br>
+   4.1. edit configurations<br>
+   ![#](src/main/resources/img/stepOne.png)
+   <br>
+   4.2. DATABASE_URL=;DATABASE_USERNAME=;DATABASE_PASSWORD=;SERVER_PORT=;EXPIRE_DAYS_SECURITY=;KEYSECRET_SECURITY=;URL_USER_MICROSERVICE=
+   <br>
+   copy this string into the "environment variables" field<br>
+   ![#](src/main/resources/img/stepTwo.png)
+   <br>
+   4.3 writes the respective values of each environment variable
+   <br>
+   ![img.png](src/main/resources/img/stepThree.png)
+5. You must send the bearer token to be able to use some functionalities of this microservice
 <!-- USAGE -->
 ## Usage
 
@@ -53,4 +56,3 @@ To get a local copy up and running follow these steps.
 ## Tests
 
 - Right-click the test folder and choose Run tests with coverage
-- For now, the tests require your database to be online to run correctly, although they do not store any values ​​in this database.
