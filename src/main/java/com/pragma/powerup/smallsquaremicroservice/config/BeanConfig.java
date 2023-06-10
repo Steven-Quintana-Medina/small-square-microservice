@@ -1,19 +1,24 @@
 package com.pragma.powerup.smallsquaremicroservice.config;
 
+import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.adapter.CategoryMysqlAdapter;
 import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.adapter.DishMysqlAdapter;
 import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.adapter.RestaurantMysqlAdapter;
 import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.adapter.UserClientAdapter;
+import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.mappers.ICategoryEntityMapper;
 import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.mappers.IDishEntityMapper;
 import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.mappers.IRestaurantEntityMapper;
 import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.repositories.ICategoryRepository;
 import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.repositories.IDishRepository;
 import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.repositories.IRestaurantRepository;
 import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.restclient.IUserClient;
+import com.pragma.powerup.smallsquaremicroservice.domain.api.ICategoryServicePort;
 import com.pragma.powerup.smallsquaremicroservice.domain.api.IDishServicePort;
 import com.pragma.powerup.smallsquaremicroservice.domain.api.IRestaurantServicePort;
 import com.pragma.powerup.smallsquaremicroservice.domain.datasource.IUserClientPort;
+import com.pragma.powerup.smallsquaremicroservice.domain.spi.ICategoryPersistencePort;
 import com.pragma.powerup.smallsquaremicroservice.domain.spi.IDishPersistencePort;
 import com.pragma.powerup.smallsquaremicroservice.domain.spi.IRestaurantPersistencePort;
+import com.pragma.powerup.smallsquaremicroservice.domain.usercase.CategoryUseCase;
 import com.pragma.powerup.smallsquaremicroservice.domain.usercase.DishUseCase;
 import com.pragma.powerup.smallsquaremicroservice.domain.usercase.RestaurantUseCase;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +34,16 @@ public class BeanConfig {
     private final IDishRepository dishRepository;
     private final IDishEntityMapper dishEntityMapper;
     private final ICategoryRepository categoryRepository;
+    private final ICategoryEntityMapper categoryEntityMapper;
+
+    @Bean
+    public ICategoryPersistencePort categoryPersistencePort(){
+        return new CategoryMysqlAdapter(categoryRepository,categoryEntityMapper);
+    }
+    @Bean
+    public ICategoryServicePort categoryServicePort(){
+        return new CategoryUseCase(categoryPersistencePort());
+    }
     @Bean
     public IRestaurantPersistencePort restaurantPersistencePort(){
        return new RestaurantMysqlAdapter(restaurantRepository,restaurantEntityMapper);

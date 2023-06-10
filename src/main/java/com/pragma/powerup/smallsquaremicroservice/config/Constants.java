@@ -14,6 +14,7 @@ public class Constants {
 
     //response code 200
     public static final String RESTAURANT_CREATED_MESSAGE = "Restaurant created successfully";
+    public static final String CATEGORY_CREATED_MESSAGE = "Category created successfully";
     public static final String DISH_CREATED_MESSAGE = "Dish created successfully";
     public static final String DISH_UPDATE_MESSAGE = "Dish Update successfully";
 

@@ -45,6 +45,15 @@ public class DishController {
                 .body(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY, DISH_CREATED_MESSAGE));
     }
 
+    @Operation(summary = "Update a dish",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = DISH_UPDATE_MESSAGE,
+                            content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Message"))),
+                    @ApiResponse(responseCode = "409", description = SWAGGER_DISH_ERROR,
+                            content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error"))),
+                    @ApiResponse(responseCode = "401", description = WRONG_CREDENTIALS_MESSAGE,
+                            content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))
+            })
     @PutMapping("/{id}")
     public ResponseEntity<Map<String, String>> updateDish(@PathVariable Long id, @RequestBody DishUpdateReqDto dishUpdateReqDto) {
         dishUpdateReqDto.setId(id);
@@ -53,6 +62,15 @@ public class DishController {
                 .body(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY, DISH_UPDATE_MESSAGE));
     }
 
+    @Operation(summary = "Update the status of a dish",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = DISH_UPDATE_MESSAGE,
+                            content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Message"))),
+                    @ApiResponse(responseCode = "409", description = SWAGGER_DISH_ERROR,
+                            content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error"))),
+                    @ApiResponse(responseCode = "401", description = WRONG_CREDENTIALS_MESSAGE,
+                            content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))
+            })
     @PutMapping("/status/{id}")
     public ResponseEntity<Map<String, String>> updateStatusDish(@PathVariable Long id, @RequestBody DishUpdateStatusReqDto dishUpdateStatusReqDto) {
         dishUpdateStatusReqDto.setId(id);

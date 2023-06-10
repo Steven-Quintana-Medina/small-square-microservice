@@ -45,6 +45,15 @@ public class RestaurantController {
                 .body(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY, RESTAURANT_CREATED_MESSAGE));
     }
 
+    @Operation(summary = "get restaurant",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "[{}]",
+                            content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Message"))),
+                    @ApiResponse(responseCode = "409", description = SWAGGER_RESTAURANT_ERROR,
+                            content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error"))),
+                    @ApiResponse(responseCode = "401", description = WRONG_CREDENTIALS_MESSAGE,
+                            content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))
+            })
     @GetMapping()
     public ResponseEntity<List<RestaurantResDto>> getAllRestaurant(@RequestParam int pageNumber, @RequestParam int pageSize){
         return ResponseEntity.ok(restaurantHandler.getAllRestaurant(pageNumber,pageSize));
