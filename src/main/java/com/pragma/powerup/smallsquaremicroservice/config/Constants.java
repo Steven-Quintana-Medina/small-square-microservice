@@ -33,7 +33,7 @@ public class Constants {
 
     //swagger
     public static final String SWAGGER_TITLE_MESSAGE = "User API Pragma Power Up";
-    public static final String SWAGGER_DESCRIPTION_MESSAGE = "User microservice";
+    public static final String SWAGGER_DESCRIPTION_MESSAGE = "Small square microservice";
     public static final String SWAGGER_VERSION_MESSAGE = "2.0.4";
     public static final String SWAGGER_LICENSE_NAME_MESSAGE = "Apache 2.0";
     public static final String SWAGGER_LICENSE_URL_MESSAGE = "https://springdoc.org/v2/";

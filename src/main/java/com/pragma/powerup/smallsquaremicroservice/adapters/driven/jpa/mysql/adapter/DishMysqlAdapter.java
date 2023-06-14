@@ -11,6 +11,12 @@ import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.repo
 import com.pragma.powerup.smallsquaremicroservice.domain.model.Dish;
 import com.pragma.powerup.smallsquaremicroservice.domain.spi.IDishPersistencePort;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+
+import java.awt.print.Pageable;
+import java.util.List;
 
 @RequiredArgsConstructor
 public class DishMysqlAdapter implements IDishPersistencePort {
@@ -45,5 +51,12 @@ public class DishMysqlAdapter implements IDishPersistencePort {
         }
         dishUpdate.setStatus(dish.getStatus());
         dishRepository.save(dishUpdate);
+    }
+
+    @Override
+    public List<Dish> getDishes(int pageNumber, int pageSize, Long idRestaurant, Long idCategory) {
+        PageRequest pageable = PageRequest.of(pageNumber, pageSize ,Sort.by("name").ascending());
+        Page<DishEntity> dishPage = dishRepository.findByIdRestaurant(pageable,idRestaurant, idCategory);
+        return dishEntityMapper.toDish(dishPage);
     }
 }

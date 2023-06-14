@@ -3,6 +3,7 @@ package com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.control
 import com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.dto.req.DishReqDto;
 import com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.dto.req.DishUpdateReqDto;
 import com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.dto.req.DishUpdateStatusReqDto;
+import com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.dto.res.DishResDto;
 import com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.handlers.IDishHandler;
 import com.pragma.powerup.smallsquaremicroservice.config.Constants;
 import io.swagger.v3.oas.annotations.Operation;
@@ -18,6 +19,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 import static com.pragma.powerup.smallsquaremicroservice.config.Constants.*;
@@ -29,6 +31,8 @@ import static com.pragma.powerup.smallsquaremicroservice.config.Constants.*;
 @SecurityRequirement(name = "jwt")
 public class DishController {
     private final IDishHandler dishHandler;
+
+//post operations
     @Operation(summary = "Add a new dish",
             responses = {
                     @ApiResponse(responseCode = "201", description = DISH_CREATED_MESSAGE,
@@ -44,7 +48,7 @@ public class DishController {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY, DISH_CREATED_MESSAGE));
     }
-
+//update operations
     @Operation(summary = "Update a dish",
             responses = {
                     @ApiResponse(responseCode = "200", description = DISH_UPDATE_MESSAGE,
@@ -78,5 +82,13 @@ public class DishController {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY, DISH_UPDATE_MESSAGE));
     }
-
+//get operations
+    @GetMapping()
+    public  ResponseEntity<List<DishResDto>> getDishes(
+            @RequestParam int pageNumber,
+            @RequestParam int pageSize,
+            @RequestParam Long idRestaurant,
+            @RequestParam Long idCategory){
+        return ResponseEntity.ok(dishHandler.getDishes(pageNumber,pageSize,idRestaurant,idCategory));
+    }
 }
