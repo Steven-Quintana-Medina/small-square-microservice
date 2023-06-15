@@ -17,7 +17,7 @@ public class RestaurantUseCase implements IRestaurantServicePort {
 
     @Override
     public void saveRestaurant(Restaurant restaurant) {
-        boolean user = userClientPort.getUser(restaurant.getIdOwner());
+        boolean user = userClientPort.getOwner(restaurant.getIdOwner());
         RestaurantService.ValidUser(user);
         RestaurantService.ValidName(restaurant.getName());
         RestaurantService.ValidNit(restaurant.getNit());

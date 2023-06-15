@@ -1,7 +1,7 @@
 package com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.controller;
 
-import com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.dto.req.RestaurantReqDto;
-import com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.handlers.IRestaurantHandler;
+import com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.dto.req.RestaurantEmployeeReqDto;
+import com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.handlers.IRestaurantEmployeeHandler;
 import com.pragma.powerup.smallsquaremicroservice.config.Constants;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -23,16 +23,16 @@ import java.util.Map;
 import static com.pragma.powerup.smallsquaremicroservice.config.Constants.*;
 
 @RestController
-@RequestMapping("/restaurant/")
+@RequestMapping("/restaurantEmployee/")
 @RequiredArgsConstructor
-@Tag(name = "Restaurant", description = "Endpoints related to restaurant")
+@Tag(name = "RestaurantEmployee", description = "Endpoints related to restaurants with respect to employees")
 @SecurityRequirement(name = "jwt")
-public class RestaurantController {
-    private final IRestaurantHandler restaurantHandler;
+public class RestaurantEmployeeController {
+    private final IRestaurantEmployeeHandler restaurantEmployeeHandler;
 
-    @Operation(summary = "Add a new restaurant",
+    @Operation(summary = "assign restaurant an employee",
             responses = {
-                    @ApiResponse(responseCode = "201", description = RESTAURANT_CREATED_MESSAGE,
+                    @ApiResponse(responseCode = "201", description = ASSIGN_RESTAURANT_EMPLOYEE,
                             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Message"))),
                     @ApiResponse(responseCode = "409", description = SWAGGER_RESTAURANT_ERROR,
                             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error"))),
@@ -40,10 +40,9 @@ public class RestaurantController {
                             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))
             })
     @PostMapping
-    public ResponseEntity<Map<String,String>> saveRestaurant(@RequestBody RestaurantReqDto restaurantReqDto){
-        System.out.println("xds");
-        restaurantHandler.saveRestaurant(restaurantReqDto);
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY, RESTAURANT_CREATED_MESSAGE));
+    public ResponseEntity<Map<String,String>> assignRestaurantEmployee(@RequestBody RestaurantEmployeeReqDto restaurantEmployeeReqDto){
+        restaurantEmployeeHandler.assignRestaurantEmployee(restaurantEmployeeReqDto);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY,ASSIGN_RESTAURANT_EMPLOYEE));
     }
 }

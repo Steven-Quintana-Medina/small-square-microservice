@@ -1,7 +1,6 @@
 package com.pragma.powerup.smallsquaremicroservice.domain.usecase;
 
 import com.pragma.powerup.smallsquaremicroservice.domain.datasource.IUserClientPort;
-import com.pragma.powerup.smallsquaremicroservice.domain.model.Restaurant;
 import com.pragma.powerup.smallsquaremicroservice.domain.spi.IRestaurantPersistencePort;
 import com.pragma.powerup.smallsquaremicroservice.domain.usercase.RestaurantUseCase;
 import org.junit.jupiter.api.BeforeEach;
@@ -32,11 +31,11 @@ public class RestaurantUseCaseTest {
 
     @Test
     public void testSaveOwner() {
-        when(userClientPort.getUser(INSTANCE_RESTAURANT.getIdOwner())).thenReturn(true);
+        when(userClientPort.getOwner(INSTANCE_RESTAURANT.getIdOwner())).thenReturn(true);
 
         restaurantUseCaseMock.saveRestaurant(INSTANCE_RESTAURANT);
 
-        verify(userClientPort).getUser(INSTANCE_RESTAURANT.getIdOwner());
+        verify(userClientPort).getOwner(INSTANCE_RESTAURANT.getIdOwner());
         verify(restaurantPersistencePort).saveRestaurant(INSTANCE_RESTAURANT);
     }
 
