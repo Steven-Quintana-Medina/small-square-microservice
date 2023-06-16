@@ -9,4 +9,7 @@ public interface IUserClient {
     @GetMapping("/user/owner/{id}")
     boolean validUserOwner(@PathVariable("id") Long id);
 
+    @GetMapping("/user/employee/{id}")
+    boolean validUserEmployee(@PathVariable("id") Long id);
+
 }

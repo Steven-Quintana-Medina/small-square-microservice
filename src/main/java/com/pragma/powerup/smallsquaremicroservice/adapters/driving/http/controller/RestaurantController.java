@@ -40,6 +40,7 @@ public class RestaurantController {
             })
     @PostMapping
     public ResponseEntity<Map<String,String>> saveRestaurant(@RequestBody RestaurantReqDto restaurantReqDto){
+        System.out.println("xds");
         restaurantHandler.saveRestaurant(restaurantReqDto);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY, RESTAURANT_CREATED_MESSAGE));

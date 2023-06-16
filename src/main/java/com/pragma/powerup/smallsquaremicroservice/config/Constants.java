@@ -17,12 +17,13 @@ public class Constants {
     public static final String CATEGORY_CREATED_MESSAGE = "Category created successfully";
     public static final String DISH_CREATED_MESSAGE = "Dish created successfully";
     public static final String DISH_UPDATE_MESSAGE = "Dish Update successfully";
+    public static final String ASSIGN_RESTAURANT_EMPLOYEE = "assign restaurant an employee";
 
     //response code 400
     public static final String INVALID_PHONE = "A restaurant has an invalid phone number";
     public static final String INVALID_NAME = "A restaurant has an invalid name";
     public static final String INVALID_NIT = "A restaurant has an invalid nit";
-    public static final String INVALID_USER = "Person is not an owner";
+    public static final String INVALID_USER = "An invalid person";
 
     public static final String INVALID_RANGE = "You must enter numbers greater than 0";
 
@@ -30,7 +31,7 @@ public class Constants {
     public static final String NIT_ALREADY_EXISTS_MESSAGE = "A restaurant with that nit already exists";
     public static final String PHONE_ALREADY_EXISTS_MESSAGE = "A restaurant with that phone already exists";
     public static final String CATEGORY_NOT_FOUND = "A category not found";
-
+    public static final String DUPLICATE_VALUE = "a value is already registered in the database";
     //swagger
     public static final String SWAGGER_TITLE_MESSAGE = "User API Pragma Power Up";
     public static final String SWAGGER_DESCRIPTION_MESSAGE = "Small square microservice";

@@ -1,5 +1,6 @@
 package com.pragma.powerup.smallsquaremicroservice.domain.datasource;
 
 public interface IUserClientPort {
-    boolean getUser(Long id);
+    boolean getOwner(Long id);
+    boolean getEmployee(Long id);
 }

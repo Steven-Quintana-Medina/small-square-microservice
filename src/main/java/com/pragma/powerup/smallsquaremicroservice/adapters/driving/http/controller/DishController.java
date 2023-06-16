@@ -15,7 +15,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
@@ -32,7 +31,7 @@ import static com.pragma.powerup.smallsquaremicroservice.config.Constants.*;
 public class DishController {
     private final IDishHandler dishHandler;
 
-//post operations
+    //post operations
     @Operation(summary = "Add a new dish",
             responses = {
                     @ApiResponse(responseCode = "201", description = DISH_CREATED_MESSAGE,
@@ -48,7 +47,8 @@ public class DishController {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY, DISH_CREATED_MESSAGE));
     }
-//update operations
+
+    //update operations
     @Operation(summary = "Update a dish",
             responses = {
                     @ApiResponse(responseCode = "200", description = DISH_UPDATE_MESSAGE,

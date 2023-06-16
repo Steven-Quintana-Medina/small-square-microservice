@@ -9,7 +9,12 @@ import lombok.RequiredArgsConstructor;
 public class UserClientAdapter implements IUserClientPort {
     private final IUserClient userClient;
     @Override
-    public boolean getUser(Long id) {
+    public boolean getOwner(Long id) {
         return userClient.validUserOwner(id);
+    }
+
+    @Override
+    public boolean getEmployee(Long id) {
+        return userClient.validUserEmployee(id);
     }
 }
