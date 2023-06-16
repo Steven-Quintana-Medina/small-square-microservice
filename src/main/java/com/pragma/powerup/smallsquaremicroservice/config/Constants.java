@@ -14,6 +14,7 @@ public class Constants {
 
     //response code 200
     public static final String RESTAURANT_CREATED_MESSAGE = "Restaurant created successfully";
+    public static final String ORDER_CREATED_MESSAGE = "Order created successfully";
     public static final String CATEGORY_CREATED_MESSAGE = "Category created successfully";
     public static final String DISH_CREATED_MESSAGE = "Dish created successfully";
     public static final String DISH_UPDATE_MESSAGE = "Dish Update successfully";
@@ -39,8 +40,11 @@ public class Constants {
     public static final String SWAGGER_LICENSE_NAME_MESSAGE = "Apache 2.0";
     public static final String SWAGGER_LICENSE_URL_MESSAGE = "https://springdoc.org/v2/";
     public static final String SWAGGER_TERMS_OF_SERVICE_MESSAGE = "http://swagger.io/terms/";
-    public static final String SWAGGER_RESTAURANT_ERROR = "Problems registering a person";
+    public static final String SWAGGER_RESTAURANT_ERROR = "Problems registering a restaurant";
     public static final String SWAGGER_DISH_ERROR = "Problems creating a dish";
+    public static final String SWAGGER_CATEGORY_ERROR = "Problems creating a category";
+    public static final String SWAGGER_ORDER_ERROR = "Problems creating a order";
+    public static final String SWAGGER_ASSIGN_RESTAURANT_EMPLOYEE_ERROR = "Problems assign restaurant an employee";
 
 
 }

@@ -23,19 +23,12 @@ public class RestaurantUseCaseTest {
 
 
     @Test
-<<<<<<< HEAD
-    void testSaveOwner() {
-        when(userClientPort.getUser(INSTANCE_RESTAURANT.getIdOwner())).thenReturn(true);
-        restaurantUseCaseMock.saveRestaurant(INSTANCE_RESTAURANT);
-        verify(userClientPort).getUser(INSTANCE_RESTAURANT.getIdOwner());
-=======
     public void testSaveOwner() {
         when(userClientPort.getOwner(INSTANCE_RESTAURANT.getIdOwner())).thenReturn(true);
 
         restaurantUseCaseMock.saveRestaurant(INSTANCE_RESTAURANT);
 
         verify(userClientPort).getOwner(INSTANCE_RESTAURANT.getIdOwner());
->>>>>>> hu-06
         verify(restaurantPersistencePort).saveRestaurant(INSTANCE_RESTAURANT);
     }
 

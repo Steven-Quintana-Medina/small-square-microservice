@@ -34,7 +34,7 @@ public class RestaurantEmployeeController {
             responses = {
                     @ApiResponse(responseCode = "201", description = ASSIGN_RESTAURANT_EMPLOYEE,
                             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Message"))),
-                    @ApiResponse(responseCode = "409", description = SWAGGER_RESTAURANT_ERROR,
+                    @ApiResponse(responseCode = "409", description = SWAGGER_ASSIGN_RESTAURANT_EMPLOYEE_ERROR,
                             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error"))),
                     @ApiResponse(responseCode = "401", description = WRONG_CREDENTIALS_MESSAGE,
                             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))

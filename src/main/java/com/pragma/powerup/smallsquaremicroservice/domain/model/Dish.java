@@ -10,7 +10,10 @@ public class Dish {
     private Restaurant idRestaurant;
     private boolean status;
 
-    public Dish(String name, double price, String description, String urlImage, Category idCategory,Restaurant idRestaurant,boolean status) {
+    public Dish() {
+    }
+
+    public Dish(String name, double price, String description, String urlImage, Category idCategory, Restaurant idRestaurant, boolean status) {
         this.name = name;
         this.price = price;
         this.description = description;

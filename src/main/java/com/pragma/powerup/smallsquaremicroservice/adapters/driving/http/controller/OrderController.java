@@ -1,7 +1,7 @@
 package com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.controller;
 
-import com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.dto.req.CategoryReqDto;
-import com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.handlers.ICategoryHandler;
+import com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.dto.req.OrderReqDto;
+import com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.handlers.IOrderHandler;
 import com.pragma.powerup.smallsquaremicroservice.config.Constants;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -23,26 +23,27 @@ import java.util.Map;
 import static com.pragma.powerup.smallsquaremicroservice.config.Constants.*;
 
 @RestController
-@RequestMapping("/category/")
+@RequestMapping("/order/")
 @RequiredArgsConstructor
-@Tag(name = "Category", description = "Endpoints related to category")
+@Tag(name = "Order", description = "Endpoints related to order")
 @SecurityRequirement(name = "jwt")
-public class CategoryController {
-    private final ICategoryHandler categoryHandler;
-    @Operation(summary = "Add a new category",
+public class OrderController {
+    private final IOrderHandler orderHandler;
+    @Operation(summary = "Add a new order",
             responses = {
-                    @ApiResponse(responseCode = "201", description = CATEGORY_CREATED_MESSAGE,
+                    @ApiResponse(responseCode = "201", description = ORDER_CREATED_MESSAGE,
                             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Message"))),
-                    @ApiResponse(responseCode = "409", description = SWAGGER_CATEGORY_ERROR,
+                    @ApiResponse(responseCode = "409", description = SWAGGER_ORDER_ERROR,
                             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error"))),
                     @ApiResponse(responseCode = "401", description = WRONG_CREDENTIALS_MESSAGE,
-                            content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))
+                            content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Message"))),
+
             })
     @PostMapping
-    public ResponseEntity<Map<String, String>> saveCategory(@RequestBody CategoryReqDto categoryReqDto) {
-        categoryHandler.saveCategory(categoryReqDto);
+    public ResponseEntity<Map<String, String>> saveOrder(@RequestBody OrderReqDto orderReqDto) {
+        orderHandler.saveOrder(orderReqDto);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY, CATEGORY_CREATED_MESSAGE));
+                .body(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY, ORDER_CREATED_MESSAGE));
     }
 
 }
