@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 public class CategoryMysqlAdapter implements ICategoryPersistencePort {
     private final ICategoryRepository categoryRepository;
     private final ICategoryEntityMapper categoryEntityMapper;
+
     @Override
     public void saveCategory(Category category) {
         categoryRepository.save(categoryEntityMapper.toEntity(category));

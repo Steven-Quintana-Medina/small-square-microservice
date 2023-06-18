@@ -12,9 +12,9 @@ import org.mapstruct.ReportingPolicy;
         unmappedSourcePolicy = ReportingPolicy.IGNORE
 )
 public interface IRestaurantEmployeeEntityMapper {
-    @Mapping(target = "idRestaurant.id",source = "idRestaurant.id")
+    @Mapping(target = "idRestaurant.id", source = "idRestaurant.id")
     RestaurantEmployeeEntity toEntity(RestaurantEmployee restaurantEmployee);
 
-    @Mapping(target = "idRestaurant.id",source = "idRestaurant.id")
+    @Mapping(target = "idRestaurant.id", source = "idRestaurant.id")
     RestaurantEmployee toRestaurantEmployee(RestaurantEmployeeEntity restaurantEmployee);
 }

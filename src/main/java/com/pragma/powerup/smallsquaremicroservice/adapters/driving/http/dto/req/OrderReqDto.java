@@ -9,9 +9,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 public class OrderReqDto {
-    @Schema(title = "idClient", description = "id of a client",example = "1")
-    private Long idClient;
-    @Schema(title = "idRestaurant", description = "id of a restaurant",example = "1")
+    @Schema(title = "idRestaurant", description = "id of a restaurant", example = "1")
     private Long idRestaurant;
     @Schema(title = "orderDish", description = "id of a dish")
     private List<OrderDishReqDto> orderDishes;

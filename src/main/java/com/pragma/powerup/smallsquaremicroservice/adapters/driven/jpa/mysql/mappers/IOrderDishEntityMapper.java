@@ -9,10 +9,14 @@ import org.mapstruct.ReportingPolicy;
 import java.util.List;
 
 @Mapper(componentModel = "spring",
-unmappedTargetPolicy = ReportingPolicy.IGNORE,
-unmappedSourcePolicy = ReportingPolicy.IGNORE)
+        unmappedTargetPolicy = ReportingPolicy.IGNORE,
+        unmappedSourcePolicy = ReportingPolicy.IGNORE)
 public interface IOrderDishEntityMapper {
-    @Mapping(target = "idOrder.id",source = "idOrder.id")
+    @Mapping(target = "idOrder.id", source = "idOrder.id")
     @Mapping(target = "idDish.id", source = "idDish.id")
     List<OrderDishEntity> toEntity(List<OrderDish> orderDish);
+
+    @Mapping(target = "idOrder.id", source = "idOrder.id")
+    @Mapping(target = "idDish.id", source = "idDish.id")
+    List<OrderDish> toModel(List<OrderDishEntity> orderDishEntity);
 }

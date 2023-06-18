@@ -21,4 +21,11 @@ public class RestaurantEmployeeUseCase implements IRestaurantEmployeeServicePort
         RestaurantService.ValidUser(user);
         restaurantEmployeePersistencePort.assignRestaurantEmployee(restaurantEmployee, idOwner);
     }
+
+    @Override
+    public RestaurantEmployee getRestaurantEmployee(Long idEmployee) {
+        return restaurantEmployeePersistencePort.getRestaurantEmployee(idEmployee);
+    }
+
+
 }

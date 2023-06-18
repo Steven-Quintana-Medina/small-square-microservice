@@ -17,6 +17,7 @@ public class IRestaurantHandlerImpl implements IRestaurantHandler {
     private final IRestaurantServicePort restaurantServicePort;
     private final IRestaurantReqMapper restaurantReqMapper;
     private final IRestaurantResMapper restaurantResMapper;
+
     @Override
     public void saveRestaurant(RestaurantReqDto restaurantReqDto) {
         restaurantServicePort.saveRestaurant(restaurantReqMapper.toRestaurant(restaurantReqDto));
@@ -24,6 +25,6 @@ public class IRestaurantHandlerImpl implements IRestaurantHandler {
 
     @Override
     public List<RestaurantResDto> getAllRestaurant(int pageNumber, int pageSize) {
-        return restaurantResMapper.toRestaurantList(restaurantServicePort.getAllRestaurant(pageNumber,pageSize));
+        return restaurantResMapper.toRestaurantList(restaurantServicePort.getAllRestaurant(pageNumber, pageSize));
     }
 }

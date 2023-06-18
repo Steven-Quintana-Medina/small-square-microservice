@@ -1,7 +1,5 @@
 package com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.entity;
 
-import com.pragma.powerup.smallsquaremicroservice.domain.enums.EnumStatusOrder;
-import com.pragma.powerup.smallsquaremicroservice.domain.model.Restaurant;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,5 +23,6 @@ public class OrderEntity {
     private Long idClient;
     private Long idChef;
     @ManyToOne
+    @JoinColumn(name = "id_restaurant", updatable = false)
     private RestaurantEntity idRestaurant;
 }

@@ -40,9 +40,9 @@ public class RestaurantEmployeeController {
                             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))
             })
     @PostMapping
-    public ResponseEntity<Map<String,String>> assignRestaurantEmployee(@RequestBody RestaurantEmployeeReqDto restaurantEmployeeReqDto){
+    public ResponseEntity<Map<String, String>> assignRestaurantEmployee(@RequestBody RestaurantEmployeeReqDto restaurantEmployeeReqDto) {
         restaurantEmployeeHandler.assignRestaurantEmployee(restaurantEmployeeReqDto);
         return ResponseEntity.status(HttpStatus.OK)
-                .body(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY,ASSIGN_RESTAURANT_EMPLOYEE));
+                .body(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY, ASSIGN_RESTAURANT_EMPLOYEE));
     }
 }

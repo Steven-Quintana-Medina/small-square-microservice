@@ -6,7 +6,6 @@ import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.springframework.data.domain.Page;
 
-import java.awt.print.Pageable;
 import java.util.List;
 
 @Mapper(componentModel = "spring",
@@ -15,5 +14,6 @@ import java.util.List;
 )
 public interface IRestaurantEntityMapper {
     RestaurantEntity toEntity(Restaurant restaurant);
-  List<Restaurant> toRestaurant(Page<RestaurantEntity> restaurantEntity);
+
+    List<Restaurant> toRestaurant(Page<RestaurantEntity> restaurantEntity);
 }

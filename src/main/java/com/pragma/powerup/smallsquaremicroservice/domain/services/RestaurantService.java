@@ -8,17 +8,18 @@ import static com.pragma.powerup.smallsquaremicroservice.domain.utils.Constants.
 
 public class RestaurantService {
 
-    public static void validRange(int pageNumber, int pageSize){
-        if(pageNumber<=0 || pageSize<=0){
+    public static void validRange(int pageNumber, int pageSize) {
+        if (pageNumber <= 0 || pageSize <= 0) {
             throw new InvalidRangeException();
         }
     }
 
-    public static void ValidUser(boolean user){
-        if(!user){
+    public static void ValidUser(boolean user) {
+        if (!user) {
             throw new InvalidUserException();
         }
     }
+
     public static void ValidPHone(String phone) {
         if (!phone.matches(REGEX_VALID_PHONE)) {
             throw new InvalidPhoneException();

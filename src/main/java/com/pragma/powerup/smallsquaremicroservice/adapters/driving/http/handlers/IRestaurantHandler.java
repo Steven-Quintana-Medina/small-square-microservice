@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface IRestaurantHandler {
     void saveRestaurant(RestaurantReqDto restaurantReqDto);
+
     List<RestaurantResDto> getAllRestaurant(int pageNumber, int pageSize);
 }

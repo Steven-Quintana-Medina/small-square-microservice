@@ -2,6 +2,7 @@ package com.pragma.powerup.smallsquaremicroservice.domain.model;
 
 import com.pragma.powerup.smallsquaremicroservice.domain.enums.EnumStatusOrder;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class Order {
         this.idClient = idClient;
         this.idChef = idChef;
         idRestaurant = restaurant;
-        this.orderDishes = orderDishes;
+        this.orderDishes = orderDishes != null ? orderDishes : new ArrayList<>();
     }
 
     public Long getId() {

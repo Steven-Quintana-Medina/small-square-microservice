@@ -15,7 +15,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
-import java.awt.print.Pageable;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -27,7 +26,7 @@ public class DishMysqlAdapter implements IDishPersistencePort {
 
     @Override
     public void saveDish(Dish dish, Long idUser) {
-        restaurantRepository.findByIdAndIdOwner(dish.getIdRestaurant().getId(),idUser).orElseThrow(UnauthorizedUserException::new);
+        restaurantRepository.findByIdAndIdOwner(dish.getIdRestaurant().getId(), idUser).orElseThrow(UnauthorizedUserException::new);
         categoryRepository.findById(dish.getIdCategory().getId()).orElseThrow(CategoryNotFoundException::new);
         dishRepository.save(dishEntityMapper.toEntity(dish));
     }
@@ -35,7 +34,7 @@ public class DishMysqlAdapter implements IDishPersistencePort {
     @Override
     public void updateDish(Dish dish, Long idUser) {
         DishEntity dishUpdate = dishRepository.findById(dish.getId()).orElseThrow(DishNotFoundException::new);
-        if(!dishUpdate.getIdRestaurant().getIdOwner().equals(idUser)){
+        if (!dishUpdate.getIdRestaurant().getIdOwner().equals(idUser)) {
             throw new UnauthorizedUserException();
         }
         dishUpdate.setPrice(dish.getPrice());
@@ -46,7 +45,7 @@ public class DishMysqlAdapter implements IDishPersistencePort {
     @Override
     public void updateDishStatus(Dish dish, Long idUser) {
         DishEntity dishUpdate = dishRepository.findById(dish.getId()).orElseThrow(DishNotFoundException::new);
-        if(!dishUpdate.getIdRestaurant().getIdOwner().equals(idUser)){
+        if (!dishUpdate.getIdRestaurant().getIdOwner().equals(idUser)) {
             throw new UnauthorizedUserException();
         }
         dishUpdate.setStatus(dish.getStatus());
@@ -55,8 +54,8 @@ public class DishMysqlAdapter implements IDishPersistencePort {
 
     @Override
     public List<Dish> getDishes(int pageNumber, int pageSize, Long idRestaurant, Long idCategory) {
-        PageRequest pageable = PageRequest.of(pageNumber, pageSize ,Sort.by("name").ascending());
-        Page<DishEntity> dishPage = dishRepository.findByIdRestaurant(pageable,idRestaurant, idCategory);
+        PageRequest pageable = PageRequest.of(pageNumber, pageSize, Sort.by("name").ascending());
+        Page<DishEntity> dishPage = dishRepository.findByIdRestaurant(pageable, idRestaurant, idCategory);
         return dishEntityMapper.toDish(dishPage);
     }
 }

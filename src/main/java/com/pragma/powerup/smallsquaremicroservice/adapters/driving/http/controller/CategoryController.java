@@ -29,6 +29,7 @@ import static com.pragma.powerup.smallsquaremicroservice.config.Constants.*;
 @SecurityRequirement(name = "jwt")
 public class CategoryController {
     private final ICategoryHandler categoryHandler;
+
     @Operation(summary = "Add a new category",
             responses = {
                     @ApiResponse(responseCode = "201", description = CATEGORY_CREATED_MESSAGE,

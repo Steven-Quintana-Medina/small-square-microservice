@@ -10,7 +10,10 @@ import java.util.List;
 
 public interface IDishHandler {
     void saveDish(DishReqDto dishReqDto);
+
     void updateDish(DishUpdateReqDto dishUpdateReqDto);
+
     void updateDishStatus(DishUpdateStatusReqDto dishUpdateStatusReqDto);
+
     List<DishResDto> getDishes(int pageNumber, int pageSize, Long idRestaurant, Long idCategory);
 }

@@ -7,8 +7,8 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class OrderDishReqDto {
-    @Schema(title = "idDish", description = "id of a dish",example = "1")
+    @Schema(title = "idDish", description = "id of a dish", example = "1")
     private Long idDish;
-    @Schema(title = "quantity", description = "amount of the dish",example = "5")
+    @Schema(title = "quantity", description = "amount of the dish", example = "5")
     private int quantity;
 }

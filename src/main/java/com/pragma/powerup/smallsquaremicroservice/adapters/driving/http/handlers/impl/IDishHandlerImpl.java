@@ -26,7 +26,7 @@ public class IDishHandlerImpl implements IDishHandler {
 
     @Override
     public void saveDish(DishReqDto dishReqDto) {
-        dishServicePort.saveDish(dishReqMapper.toDish(dishReqDto),jwtService.getIdToken(request.getHeader("Authorization")));
+        dishServicePort.saveDish(dishReqMapper.toDish(dishReqDto), jwtService.getIdToken(request.getHeader("Authorization")));
 
     }
 
@@ -37,11 +37,11 @@ public class IDishHandlerImpl implements IDishHandler {
 
     @Override
     public void updateDishStatus(DishUpdateStatusReqDto dishUpdateStatusReqDto) {
-        dishServicePort.updateDishStatus(dishReqMapper.toDish(dishUpdateStatusReqDto),jwtService.getIdToken(request.getHeader("Authorization")));
+        dishServicePort.updateDishStatus(dishReqMapper.toDish(dishUpdateStatusReqDto), jwtService.getIdToken(request.getHeader("Authorization")));
     }
 
     @Override
     public List<DishResDto> getDishes(int pageNumber, int pageSize, Long idRestaurant, Long idCategory) {
-        return dishResMapper.toDishList(dishServicePort.getDishes(pageNumber,pageSize,idRestaurant,idCategory));
+        return dishResMapper.toDishList(dishServicePort.getDishes(pageNumber, pageSize, idRestaurant, idCategory));
     }
 }

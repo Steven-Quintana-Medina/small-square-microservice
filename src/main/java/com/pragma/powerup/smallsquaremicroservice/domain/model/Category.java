@@ -1,6 +1,5 @@
 package com.pragma.powerup.smallsquaremicroservice.domain.model;
 
-import jakarta.persistence.*;
 public class Category {
     private Long id;
     private String name;

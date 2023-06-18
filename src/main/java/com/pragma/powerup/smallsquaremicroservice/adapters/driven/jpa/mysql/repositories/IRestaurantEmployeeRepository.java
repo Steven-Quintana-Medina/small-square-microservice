@@ -3,6 +3,8 @@ package com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.rep
 import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.entity.RestaurantEmployeeEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface IRestaurantEmployeeRepository extends JpaRepository<RestaurantEmployeeEntity,Long> {
-    RestaurantEmployeeEntity findByIdEmployee(Long idEmployee);
+import java.util.Optional;
+
+public interface IRestaurantEmployeeRepository extends JpaRepository<RestaurantEmployeeEntity, Long> {
+    Optional<RestaurantEmployeeEntity> findByIdEmployee(Long idEmployee);
 }

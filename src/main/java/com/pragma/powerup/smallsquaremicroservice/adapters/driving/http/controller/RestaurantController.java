@@ -39,7 +39,7 @@ public class RestaurantController {
                             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))
             })
     @PostMapping
-    public ResponseEntity<Map<String,String>> saveRestaurant(@RequestBody RestaurantReqDto restaurantReqDto){
+    public ResponseEntity<Map<String, String>> saveRestaurant(@RequestBody RestaurantReqDto restaurantReqDto) {
         restaurantHandler.saveRestaurant(restaurantReqDto);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY, RESTAURANT_CREATED_MESSAGE));
@@ -53,7 +53,7 @@ public class RestaurantController {
                             content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))
             })
     @GetMapping()
-    public ResponseEntity<List<RestaurantResDto>> getAllRestaurant(@RequestParam int pageNumber, @RequestParam int pageSize){
-        return ResponseEntity.ok(restaurantHandler.getAllRestaurant(pageNumber,pageSize));
+    public ResponseEntity<List<RestaurantResDto>> getAllRestaurant(@RequestParam int pageNumber, @RequestParam int pageSize) {
+        return ResponseEntity.ok(restaurantHandler.getAllRestaurant(pageNumber, pageSize));
     }
 }

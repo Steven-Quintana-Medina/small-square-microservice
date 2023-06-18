@@ -9,11 +9,17 @@ import lombok.RequiredArgsConstructor;
 import java.util.List;
 
 @RequiredArgsConstructor
-public class OrderDishMysqlAdapter implements IOrderDishPersistencePort{
+public class OrderDishMysqlAdapter implements IOrderDishPersistencePort {
     private final IOrderDishRepository orderDishRepository;
     private final IOrderDishEntityMapper orderDishEntityMapper;
+
     @Override
     public void saveOrderDish(List<OrderDish> orderDishes) {
         orderDishRepository.saveAll(orderDishEntityMapper.toEntity(orderDishes));
+    }
+
+    @Override
+    public List<OrderDish> getRestaurantOrderDish(String statusOrder, Long idRestaurant) {
+        return orderDishEntityMapper.toModel(orderDishRepository.findByIdRestaurant(statusOrder, idRestaurant));
     }
 }

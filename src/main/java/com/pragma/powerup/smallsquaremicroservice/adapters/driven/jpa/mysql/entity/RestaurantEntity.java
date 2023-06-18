@@ -16,11 +16,11 @@ public class RestaurantEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = true,nullable = false)
+    @Column(unique = true, nullable = false)
     private String nit;
     private String name;
     private String address;
-    @Column(unique = true,nullable = false)
+    @Column(unique = true, nullable = false)
     private String phone;
     private String urlLogo;
     private Long idOwner;

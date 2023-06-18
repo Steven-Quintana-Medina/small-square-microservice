@@ -7,8 +7,8 @@ import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
 @Mapper(componentModel = "spring",
-unmappedTargetPolicy = ReportingPolicy.IGNORE,
-unmappedSourcePolicy = ReportingPolicy.IGNORE)
+        unmappedTargetPolicy = ReportingPolicy.IGNORE,
+        unmappedSourcePolicy = ReportingPolicy.IGNORE)
 public interface IRestaurantEmployeeReqMapper {
     @Mapping(target = "idRestaurant.id", source = "idRestaurant")
     RestaurantEmployee toRestaurantEmployee(RestaurantEmployeeReqDto restaurantEmployeeReqDto);

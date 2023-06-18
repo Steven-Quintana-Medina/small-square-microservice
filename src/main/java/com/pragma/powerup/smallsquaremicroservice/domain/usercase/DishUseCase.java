@@ -16,24 +16,24 @@ public class DishUseCase implements IDishServicePort {
     }
 
     @Override
-    public void saveDish(Dish dish,Long idUser) {
+    public void saveDish(Dish dish, Long idUser) {
         dishPersistencePort.saveDish(dish, idUser);
     }
 
     @Override
     public void updateDish(Dish dish, Long idUser) {
-        dishPersistencePort.updateDish(dish,idUser);
+        dishPersistencePort.updateDish(dish, idUser);
     }
 
     @Override
     public void updateDishStatus(Dish dish, Long idUser) {
-        dishPersistencePort.updateDishStatus(dish,idUser);
+        dishPersistencePort.updateDishStatus(dish, idUser);
     }
 
     @Override
-    public List<Dish> getDishes(int pageNumber, int pageSize, Long idRestaurant,Long idCategory) {
-        validRange(pageNumber,pageSize);
-        pageNumber-=1;
-        return dishPersistencePort.getDishes(pageNumber,pageSize,idRestaurant,idCategory);
+    public List<Dish> getDishes(int pageNumber, int pageSize, Long idRestaurant, Long idCategory) {
+        validRange(pageNumber, pageSize);
+        pageNumber -= 1;
+        return dishPersistencePort.getDishes(pageNumber, pageSize, idRestaurant, idCategory);
     }
 }

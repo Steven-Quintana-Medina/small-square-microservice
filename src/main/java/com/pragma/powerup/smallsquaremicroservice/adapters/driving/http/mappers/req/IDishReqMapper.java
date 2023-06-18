@@ -1,7 +1,6 @@
 package com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.mappers.req;
 
 import com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.dto.req.DishReqDto;
-
 import com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.dto.req.DishUpdateReqDto;
 import com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.dto.req.DishUpdateStatusReqDto;
 import com.pragma.powerup.smallsquaremicroservice.domain.model.Dish;
@@ -13,9 +12,11 @@ import org.mapstruct.ReportingPolicy;
         unmappedTargetPolicy = ReportingPolicy.IGNORE,
         unmappedSourcePolicy = ReportingPolicy.IGNORE)
 public interface IDishReqMapper {
-    @Mapping(target = "idRestaurant.id",source = "idRestaurant")
-    @Mapping(target = "idCategory.id",source = "idCategory")
+    @Mapping(target = "idRestaurant.id", source = "idRestaurant")
+    @Mapping(target = "idCategory.id", source = "idCategory")
     Dish toDish(DishReqDto dishReqDto);
+
     Dish toDish(DishUpdateReqDto dishUpdateReqDto);
+
     Dish toDish(DishUpdateStatusReqDto dishUpdateStatusReqDto);
 }

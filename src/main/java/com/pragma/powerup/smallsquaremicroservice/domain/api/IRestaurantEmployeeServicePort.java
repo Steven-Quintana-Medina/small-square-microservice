@@ -4,4 +4,6 @@ import com.pragma.powerup.smallsquaremicroservice.domain.model.RestaurantEmploye
 
 public interface IRestaurantEmployeeServicePort {
     void assignRestaurantEmployee(RestaurantEmployee restaurantEmployee, Long idOwner);
+
+    RestaurantEmployee getRestaurantEmployee(Long idEmployee);
 }

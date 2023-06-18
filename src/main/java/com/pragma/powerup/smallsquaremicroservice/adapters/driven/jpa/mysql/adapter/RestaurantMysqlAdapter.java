@@ -12,19 +12,19 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
-import java.awt.print.Pageable;
 import java.util.List;
 
 @RequiredArgsConstructor
 public class RestaurantMysqlAdapter implements IRestaurantPersistencePort {
     private final IRestaurantRepository restaurantRepository;
     private final IRestaurantEntityMapper restaurantEntityMapper;
+
     @Override
     public void saveRestaurant(Restaurant restaurant) {
-        if(restaurantRepository.existsByNit(restaurant.getNit())){
+        if (restaurantRepository.existsByNit(restaurant.getNit())) {
             throw new NitAlreadyExistsException();
         }
-        if(restaurantRepository.existsByPhone(restaurant.getPhone())){
+        if (restaurantRepository.existsByPhone(restaurant.getPhone())) {
             throw new PhoneAlreadyExistsException();
         }
         restaurantRepository.save(restaurantEntityMapper.toEntity(restaurant));

@@ -16,7 +16,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 @Component
-public class JwtProvider implements JwtService{
+public class JwtProvider implements JwtService {
     private final static Logger logger = LoggerFactory.getLogger(JwtProvider.class);
     private final Key secretKey;
     @Value("${jwt.expiration}")

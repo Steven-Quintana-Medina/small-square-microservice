@@ -5,9 +5,7 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class DishResDto {
-    private String name;
-    private double price;
-    private String description;
-    private String urlImage;
+public class OrderDishResDto {
+    private DishResDto idDish;
+    private int quantity;
 }

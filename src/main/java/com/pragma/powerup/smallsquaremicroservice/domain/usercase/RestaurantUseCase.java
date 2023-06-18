@@ -3,8 +3,8 @@ package com.pragma.powerup.smallsquaremicroservice.domain.usercase;
 import com.pragma.powerup.smallsquaremicroservice.domain.api.IRestaurantServicePort;
 import com.pragma.powerup.smallsquaremicroservice.domain.datasource.IUserClientPort;
 import com.pragma.powerup.smallsquaremicroservice.domain.model.Restaurant;
-import com.pragma.powerup.smallsquaremicroservice.domain.spi.IRestaurantPersistencePort;
 import com.pragma.powerup.smallsquaremicroservice.domain.services.RestaurantService;
+import com.pragma.powerup.smallsquaremicroservice.domain.spi.IRestaurantPersistencePort;
 
 import java.util.List;
 
@@ -32,9 +32,9 @@ public class RestaurantUseCase implements IRestaurantServicePort {
 
     @Override
     public List<Restaurant> getAllRestaurant(int pageNumber, int pageSize) {
-        validRange(pageNumber,pageSize);
-        pageNumber-=1;
-        return restaurantPersistencePort.getAllRestaunrat(pageNumber,pageSize);
+        validRange(pageNumber, pageSize);
+        pageNumber -= 1;
+        return restaurantPersistencePort.getAllRestaunrat(pageNumber, pageSize);
     }
 
 }

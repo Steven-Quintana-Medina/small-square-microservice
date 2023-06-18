@@ -30,59 +30,62 @@ public class BeanConfig {
     private final IOrderDishEntityMapper orderDishEntityMapper;
 
     @Bean
-    public ICategoryPersistencePort categoryPersistencePort(){
-        return new CategoryMysqlAdapter(categoryRepository,categoryEntityMapper);
+    public ICategoryPersistencePort categoryPersistencePort() {
+        return new CategoryMysqlAdapter(categoryRepository, categoryEntityMapper);
     }
+
     @Bean
-    public ICategoryServicePort categoryServicePort(){
+    public ICategoryServicePort categoryServicePort() {
         return new CategoryUseCase(categoryPersistencePort());
     }
 
     @Bean
-    public IRestaurantPersistencePort restaurantPersistencePort(){
-       return new RestaurantMysqlAdapter(restaurantRepository,restaurantEntityMapper);
+    public IRestaurantPersistencePort restaurantPersistencePort() {
+        return new RestaurantMysqlAdapter(restaurantRepository, restaurantEntityMapper);
     }
+
     @Bean
-    public IUserClientPort userClientPort(){
+    public IUserClientPort userClientPort() {
         return new UserClientAdapter(userClient);
     }
 
     @Bean
-    public IRestaurantServicePort restaurantServicePort(){
-        return new RestaurantUseCase(restaurantPersistencePort(),userClientPort());
+    public IRestaurantServicePort restaurantServicePort() {
+        return new RestaurantUseCase(restaurantPersistencePort(), userClientPort());
     }
 
     @Bean
-    public IDishPersistencePort dishPersistencePort(){
-        return new DishMysqlAdapter(dishRepository,dishEntityMapper,categoryRepository,restaurantRepository);
+    public IDishPersistencePort dishPersistencePort() {
+        return new DishMysqlAdapter(dishRepository, dishEntityMapper, categoryRepository, restaurantRepository);
     }
+
     @Bean
-    public IDishServicePort dishServicePort(){
+    public IDishServicePort dishServicePort() {
         return new DishUseCase(dishPersistencePort());
     }
 
     @Bean
-    public IRestaurantEmployeePersistencePort restaurantEmployeePersistencePort(){
-        return new RestaurantEmployeeMysqlAdapter(restaurantRepository,restaurantEmployeeRepository,restaurantEmployeeEntityMapper);
+    public IRestaurantEmployeePersistencePort restaurantEmployeePersistencePort() {
+        return new RestaurantEmployeeMysqlAdapter(restaurantRepository, restaurantEmployeeRepository, restaurantEmployeeEntityMapper);
     }
 
     @Bean
-    public IRestaurantEmployeeServicePort restaurantEmployeeServicePort(){
-        return new RestaurantEmployeeUseCase(restaurantEmployeePersistencePort(),userClientPort());
+    public IRestaurantEmployeeServicePort restaurantEmployeeServicePort() {
+        return new RestaurantEmployeeUseCase(restaurantEmployeePersistencePort(), userClientPort());
     }
 
     @Bean
-    public IOrderDishPersistencePort orderDishPersistencePort(){
-        return new OrderDishMysqlAdapter(orderDishRepository,orderDishEntityMapper);
+    public IOrderDishPersistencePort orderDishPersistencePort() {
+        return new OrderDishMysqlAdapter(orderDishRepository, orderDishEntityMapper);
     }
 
     @Bean
-    public IOrderPersistencePort orderPersistencePort(){
-        return new OrderMysqlAdapter(orderRepository,orderEntityMapper);
+    public IOrderPersistencePort orderPersistencePort() {
+        return new OrderMysqlAdapter(orderRepository, orderEntityMapper);
     }
 
     @Bean
-    public IOrderServicePort orderServicePort(){
-        return new OrderUseCase(orderPersistencePort(), orderDishPersistencePort());
+    public IOrderServicePort orderServicePort() {
+        return new OrderUseCase(orderPersistencePort(), orderDishPersistencePort(), restaurantEmployeePersistencePort());
     }
 }

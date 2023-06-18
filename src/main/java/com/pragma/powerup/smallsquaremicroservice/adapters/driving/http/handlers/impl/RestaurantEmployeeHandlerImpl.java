@@ -19,6 +19,6 @@ public class RestaurantEmployeeHandlerImpl implements IRestaurantEmployeeHandler
 
     @Override
     public void assignRestaurantEmployee(RestaurantEmployeeReqDto restaurantEmployeeReqDto) {
-        restaurantEmployeeServicePort.assignRestaurantEmployee(restaurantEmployeeReqMapper.toRestaurantEmployee(restaurantEmployeeReqDto),jwtService.getIdToken(request.getHeader("Authorization")));
+        restaurantEmployeeServicePort.assignRestaurantEmployee(restaurantEmployeeReqMapper.toRestaurantEmployee(restaurantEmployeeReqDto), jwtService.getIdToken(request.getHeader("Authorization")));
     }
 }
