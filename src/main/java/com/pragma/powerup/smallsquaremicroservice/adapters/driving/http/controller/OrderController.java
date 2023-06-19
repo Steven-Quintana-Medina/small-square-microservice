@@ -1,5 +1,6 @@
 package com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.controller;
 
+import com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.dto.req.AssignEmployeeOrderDto;
 import com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.dto.req.OrderReqDto;
 import com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.dto.res.OrderResDto;
 import com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.handlers.IOrderHandler;
@@ -58,5 +59,23 @@ public class OrderController {
     public ResponseEntity<List<OrderResDto>> getOrders(@RequestParam int pageNumber, @RequestParam int pageSize, @RequestParam String statusOrder) {
         return ResponseEntity.ok(orderHandler.getRestaurantOrders(pageNumber, pageSize, statusOrder));
     }
+
+    @Operation(summary = "Assign order to employee",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "[{}]",
+                            content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Message"))),
+                    @ApiResponse(responseCode = "409", description = INVALID_ASSIGN_EMPLOYEE_ORDER,
+                            content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error"))),
+                    @ApiResponse(responseCode = "401", description = WRONG_CREDENTIALS_MESSAGE,
+                            content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Message"))),
+                    @ApiResponse(responseCode = "404", description = ORDER_NOT_FOUND,
+                            content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Message")))
+
+            })
+    @PutMapping()
+    public ResponseEntity<List<OrderResDto>> assignEmployeeOrder(@RequestParam int pageNumber, @RequestParam int pageSize, @RequestParam String statusOrder, @RequestBody AssignEmployeeOrderDto idOrders) {
+        return ResponseEntity.ok(orderHandler.assignEmployeeOrder(pageNumber, pageSize, statusOrder, idOrders));
+    }
+
 
 }

@@ -8,4 +8,6 @@ public interface IOrderPersistencePort {
     Order saveOrder(Order order);
 
     List<Order> getRestaurantOrder(int pageNumber, int pageSize, String statusOrder, Long idRestaurant);
+
+    void saveOrderAll(List<Order> orders);
 }

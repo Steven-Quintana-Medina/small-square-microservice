@@ -24,4 +24,9 @@ public class OrderMysqlAdapter implements IOrderPersistencePort {
         PageRequest pageable = PageRequest.of(pageNumber, pageSize);
         return orderEntityMapper.toOrder(orderRepository.findByIdRestaurant(pageable, statusOrder, idRestaurant));
     }
+
+    @Override
+    public void saveOrderAll(List<Order> orders) {
+        orderRepository.saveAll(orderEntityMapper.toEntity(orders));
+    }
 }

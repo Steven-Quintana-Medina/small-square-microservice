@@ -2,6 +2,8 @@ package com.pragma.powerup.smallsquaremicroservice.domain.usercase;
 
 import com.pragma.powerup.smallsquaremicroservice.domain.api.IOrderServicePort;
 import com.pragma.powerup.smallsquaremicroservice.domain.enums.EnumStatusOrder;
+import com.pragma.powerup.smallsquaremicroservice.domain.exceptions.InvalidAssignEmployeeOrderException;
+import com.pragma.powerup.smallsquaremicroservice.domain.exceptions.OrderNotFoundException;
 import com.pragma.powerup.smallsquaremicroservice.domain.model.Order;
 import com.pragma.powerup.smallsquaremicroservice.domain.model.OrderDish;
 import com.pragma.powerup.smallsquaremicroservice.domain.spi.IOrderDishPersistencePort;
@@ -51,6 +53,29 @@ public class OrderUseCase implements IOrderServicePort {
                 }
             }
         }
+        return orders;
+    }
+
+    @Override
+    public List<Order> assignEmployeeOrder(int pageNumber, int pageSize, String statusOrder, List<Long> idOrders, Long idEmployee) {
+        List<Order> orders = getRestaurantOrder(pageNumber, pageSize, statusOrder, idEmployee);
+        for (Long idOrder : idOrders) {
+            boolean idFound = false;
+            for (Order order : orders) {
+                if (order.getIdChef() == null && order.getId().equals(idOrder)) {
+                    order.setIdChef(idEmployee);
+                    order.setStatus(EnumStatusOrder.EN_PREPARACION);
+                    idFound = true;
+                    break;
+                } else if (order.getIdChef() != null && order.getId().equals(idOrder)) {
+                    throw new InvalidAssignEmployeeOrderException(idOrder);
+                }
+            }
+            if (!idFound) {
+                throw new OrderNotFoundException(idOrder);
+            }
+        }
+        orderPersistencePort.saveOrderAll(orders);
         return orders;
     }
 }

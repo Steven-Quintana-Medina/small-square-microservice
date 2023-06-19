@@ -105,8 +105,20 @@ public class ControllerAdvisor {
     }
 
     @ExceptionHandler(AuthenticationException.class)
-    public ResponseEntity<Map<String, String>> handleAuthenticationException(AuthenticationException noDataFoundException) {
+    public ResponseEntity<Map<String, String>> handleAuthenticationException() {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                 .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, WRONG_CREDENTIALS_MESSAGE));
+    }
+
+    @ExceptionHandler(InvalidAssignEmployeeOrderException.class)
+    public ResponseEntity<Map<String, String>> handleInvalidAssignEmployeeOrderException(InvalidAssignEmployeeOrderException e) {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, INVALID_ASSIGN_EMPLOYEE_ORDER + e.getIdOrder()));
+    }
+
+    @ExceptionHandler(OrderNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleOrderNotFoundException(OrderNotFoundException e) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, e.getIdOrder() + ORDER_NOT_FOUND));
     }
 }

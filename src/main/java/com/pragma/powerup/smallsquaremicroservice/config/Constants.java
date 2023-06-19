@@ -20,10 +20,12 @@ public class Constants {
     public static final String INVALID_NIT = "A restaurant has an invalid nit";
     public static final String INVALID_USER = "An invalid person";
     public static final String INVALID_RANGE = "You must enter numbers greater than 0";
+    public static final String INVALID_ASSIGN_EMPLOYEE_ORDER = "another employee is preparing the order #";
     public static final String WRONG_CREDENTIALS_MESSAGE = "Wrong credentials";
     public static final String NIT_ALREADY_EXISTS_MESSAGE = "A restaurant with that nit already exists";
     public static final String PHONE_ALREADY_EXISTS_MESSAGE = "A restaurant with that phone already exists";
     public static final String CATEGORY_NOT_FOUND = "A category not found";
+    public static final String ORDER_NOT_FOUND = " order not found";
     public static final String DUPLICATE_VALUE = "a value is already registered in the database";
     //swagger
     public static final String SWAGGER_TITLE_MESSAGE = "User API Pragma Power Up";
@@ -37,6 +39,7 @@ public class Constants {
     public static final String SWAGGER_CATEGORY_ERROR = "Problems creating a category";
     public static final String SWAGGER_ORDER_ERROR = "Problems creating a order";
     public static final String SWAGGER_ASSIGN_RESTAURANT_EMPLOYEE_ERROR = "Problems assign restaurant an employee";
+
     private Constants() {
         throw new IllegalStateException("Utility class");
     }

@@ -1,5 +1,6 @@
 package com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.handlers;
 
+import com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.dto.req.AssignEmployeeOrderDto;
 import com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.dto.req.OrderReqDto;
 import com.pragma.powerup.smallsquaremicroservice.adapters.driving.http.dto.res.OrderResDto;
 
@@ -9,4 +10,6 @@ public interface IOrderHandler {
     void saveOrder(OrderReqDto orderReqDto);
 
     List<OrderResDto> getRestaurantOrders(int pageNumber, int pageSize, String statusOrder);
+
+    List<OrderResDto> assignEmployeeOrder(int pageNumber, int pageSize, String statusOrder, AssignEmployeeOrderDto assignEmployeeOrderDto);
 }
