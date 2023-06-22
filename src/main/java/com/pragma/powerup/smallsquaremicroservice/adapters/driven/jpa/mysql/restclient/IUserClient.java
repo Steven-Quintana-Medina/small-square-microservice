@@ -13,4 +13,7 @@ public interface IUserClient {
     @GetMapping("/user/employee/{id}")
     boolean validUserEmployee(@PathVariable("id") Long id);
 
+    @GetMapping("/user/client/{id}")
+    String getPhoneClient(@PathVariable("id") Long id);
+
 }

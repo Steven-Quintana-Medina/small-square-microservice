@@ -1,5 +1,6 @@
 package com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.adapter;
 
+import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.entity.OrderEntity;
 import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.mappers.IOrderEntityMapper;
 import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.repositories.IOrderRepository;
 import com.pragma.powerup.smallsquaremicroservice.domain.model.Order;
@@ -8,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 public class OrderMysqlAdapter implements IOrderPersistencePort {
@@ -28,5 +30,11 @@ public class OrderMysqlAdapter implements IOrderPersistencePort {
     @Override
     public void saveOrderAll(List<Order> orders) {
         orderRepository.saveAll(orderEntityMapper.toEntity(orders));
+    }
+
+    @Override
+    public Order getOrder(Long id) {
+        Optional<OrderEntity> order = orderRepository.findById(id);
+        return orderEntityMapper.toOrder(order.orElse(null));
     }
 }

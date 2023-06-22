@@ -15,3 +15,6 @@ jwt:
 
 user-microservice:
   url: ${URL_USER_MICROSERVICE}
+
+messenger-microservice:
+  url: ${URL_MESSENGER_MICROSERVICE}

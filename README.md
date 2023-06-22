@@ -46,11 +46,12 @@ To get a local copy up and running follow these steps.
    <br>
    ![img.png](src/main/resources/img/stepThree.png)
 5. You must send the bearer token to be able to use some functionalities of this microservice
+6. you need to run the users microservice and the messaging one (both must have the changes from hu-14 onwards)
 <!-- USAGE -->
 ## Usage
 
 1. Right-click the class PowerUpApplication and choose Run
-2. Open [http://localhost:8091/swagger-ui/index.html](http://localhost:8090/swagger-ui/index.html) in your web browser
+2. Open [http://localhost:8091/swagger-ui/index.html](http://localhost:8091/swagger-ui/index.html) in your web browser
 
 <!-- ROADMAP -->
 ## Tests

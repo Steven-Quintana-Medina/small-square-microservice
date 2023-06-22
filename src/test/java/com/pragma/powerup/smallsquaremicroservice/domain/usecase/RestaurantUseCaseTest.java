@@ -10,7 +10,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static com.pragma.powerup.smallsquaremicroservice.domain.utils.RestaurantModelValues.INSTANCE_RESTAURANT;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class RestaurantUseCaseTest {
@@ -23,7 +24,7 @@ public class RestaurantUseCaseTest {
 
 
     @Test
-    public void testSaveOwner() {
+    void testSaveOwner() {
         when(userClientPort.getOwner(INSTANCE_RESTAURANT.getIdOwner())).thenReturn(true);
 
         restaurantUseCaseMock.saveRestaurant(INSTANCE_RESTAURANT);
@@ -38,8 +39,6 @@ public class RestaurantUseCaseTest {
         int pageSize = 1;
         restaurantUseCaseMock.getAllRestaurant(pageNumber, pageSize);
         verify(restaurantPersistencePort).getAllRestaunrat(pageNumber -= 1, pageSize);
-
-
     }
 
 

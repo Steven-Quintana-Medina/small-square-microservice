@@ -18,4 +18,9 @@ public class UserClientAdapter implements IUserClientPort {
     public boolean getEmployee(Long id) {
         return userClient.validUserEmployee(id);
     }
+
+    @Override
+    public String getClient(Long id) {
+        return userClient.getPhoneClient(id);
+    }
 }

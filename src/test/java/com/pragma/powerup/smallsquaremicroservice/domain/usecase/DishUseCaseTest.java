@@ -20,21 +20,21 @@ public class DishUseCaseTest {
     private DishUseCase dishUseCaseMock;
 
     @Test
-    public void testSaveDish() {
-        dishUseCaseMock.saveDish(INSTANCE_DISH,1L);
-        verify(dishPersistencePortMock).saveDish(INSTANCE_DISH,1L);
+    void testSaveDish() {
+        dishUseCaseMock.saveDish(INSTANCE_DISH, 1L);
+        verify(dishPersistencePortMock).saveDish(INSTANCE_DISH, 1L);
     }
 
     @Test
-    public void testUpdateDish(){
-        dishUseCaseMock.updateDish(INSTANCE_DISH,1L);
-        verify(dishPersistencePortMock).updateDish(INSTANCE_DISH,1L);
+    void testUpdateDish() {
+        dishUseCaseMock.updateDish(INSTANCE_DISH, 1L);
+        verify(dishPersistencePortMock).updateDish(INSTANCE_DISH, 1L);
     }
 
     @Test
-    public void testUpdateDishStatus(){
-        dishUseCaseMock.updateDishStatus(INSTANCE_DISH,1L);
-        verify(dishPersistencePortMock).updateDishStatus(INSTANCE_DISH,1L);
+    void testUpdateDishStatus() {
+        dishUseCaseMock.updateDishStatus(INSTANCE_DISH, 1L);
+        verify(dishPersistencePortMock).updateDishStatus(INSTANCE_DISH, 1L);
     }
 
 }
