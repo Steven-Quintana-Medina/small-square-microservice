@@ -29,6 +29,11 @@ public class IOrderHandlerImpl implements IOrderHandler {
     }
 
     @Override
+    public void updateStatusToReady(Long id) {
+        orderServicePort.updateStatusToReady(id);
+    }
+
+    @Override
     public List<OrderResDto> getRestaurantOrders(int pageNumber, int pageSize, String statusOrder) {
         return orderResMapper.toOrderRes(orderServicePort.getRestaurantOrder(pageNumber, pageSize, statusOrder, jwtService.getIdToken(request.getHeader("Authorization"))));
     }

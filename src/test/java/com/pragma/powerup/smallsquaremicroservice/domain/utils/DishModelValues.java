@@ -7,8 +7,6 @@ import com.pragma.powerup.smallsquaremicroservice.domain.model.Restaurant;
 
 public class DishModelValues {
 
-    private static final Category category = new Category(2L,"bebidas","liquidos");
-
     public static final Restaurant INSTANCE_RESTAURANT = new Restaurant(
             7L,
             "100000",
@@ -18,7 +16,7 @@ public class DishModelValues {
             "https://www.uhdpaper.com/2023/04/night-sky-clouds-sunset-scenery-4k-7700i.html",
             3L
     );
-
+    private static final Category category = new Category(2L, "bebidas", "liquidos");
     public static final Dish INSTANCE_DISH = new Dish(
             "cd",
             100000.00,

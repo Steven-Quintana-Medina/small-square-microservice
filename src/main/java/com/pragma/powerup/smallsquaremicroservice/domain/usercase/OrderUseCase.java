@@ -1,18 +1,23 @@
 package com.pragma.powerup.smallsquaremicroservice.domain.usercase;
 
 import com.pragma.powerup.smallsquaremicroservice.domain.api.IOrderServicePort;
+import com.pragma.powerup.smallsquaremicroservice.domain.datasource.IMessageClientPort;
+import com.pragma.powerup.smallsquaremicroservice.domain.datasource.IUserClientPort;
 import com.pragma.powerup.smallsquaremicroservice.domain.enums.EnumStatusOrder;
 import com.pragma.powerup.smallsquaremicroservice.domain.exceptions.InvalidAssignEmployeeOrderException;
 import com.pragma.powerup.smallsquaremicroservice.domain.exceptions.OrderNotFoundException;
 import com.pragma.powerup.smallsquaremicroservice.domain.model.Order;
 import com.pragma.powerup.smallsquaremicroservice.domain.model.OrderDish;
+import com.pragma.powerup.smallsquaremicroservice.domain.model.OrderPin;
 import com.pragma.powerup.smallsquaremicroservice.domain.spi.IOrderDishPersistencePort;
 import com.pragma.powerup.smallsquaremicroservice.domain.spi.IOrderPersistencePort;
+import com.pragma.powerup.smallsquaremicroservice.domain.spi.IOrderPinPersistencePort;
 import com.pragma.powerup.smallsquaremicroservice.domain.spi.IRestaurantEmployeePersistencePort;
 
 import java.util.List;
 import java.util.Objects;
 
+import static com.pragma.powerup.smallsquaremicroservice.domain.services.OrderService.*;
 import static com.pragma.powerup.smallsquaremicroservice.domain.services.RestaurantService.validRange;
 import static com.pragma.powerup.smallsquaremicroservice.domain.utils.Constants.CURRENT_DATE;
 
@@ -20,11 +25,17 @@ public class OrderUseCase implements IOrderServicePort {
     private final IOrderPersistencePort orderPersistencePort;
     private final IOrderDishPersistencePort orderDishPersistencePort;
     private final IRestaurantEmployeePersistencePort restaurantEmployeePersistencePort;
+    private final IUserClientPort userClientPort;
+    private final IMessageClientPort messageClientPort;
+    private final IOrderPinPersistencePort orderPinPersistencePort;
 
-    public OrderUseCase(IOrderPersistencePort orderPersistencePort, IOrderDishPersistencePort orderDishPersistencePort, IRestaurantEmployeePersistencePort restaurantEmployeePersistencePort) {
+    public OrderUseCase(IOrderPersistencePort orderPersistencePort, IOrderDishPersistencePort orderDishPersistencePort, IRestaurantEmployeePersistencePort restaurantEmployeePersistencePort, IUserClientPort userClientPort, IMessageClientPort messageClientPort, IOrderPinPersistencePort orderPinPersistencePort) {
         this.orderPersistencePort = orderPersistencePort;
         this.orderDishPersistencePort = orderDishPersistencePort;
         this.restaurantEmployeePersistencePort = restaurantEmployeePersistencePort;
+        this.userClientPort = userClientPort;
+        this.messageClientPort = messageClientPort;
+        this.orderPinPersistencePort = orderPinPersistencePort;
     }
 
     @Override
@@ -36,6 +47,21 @@ public class OrderUseCase implements IOrderServicePort {
 
         order.getOrderDishes().forEach(orderDish -> orderDish.setIdOrder(orderEntity));
         orderDishPersistencePort.saveOrderDish(order.getOrderDishes());
+    }
+
+    @Override
+    public void updateStatusToReady(Long id) {
+        Order order = orderPersistencePort.getOrder(id);
+        validOrderReady(order, id);
+        order.setStatus(EnumStatusOrder.LISTO);
+        String phone = userClientPort.getClient(order.getIdClient());
+        exists(phone);
+
+        String pin = codeSms(order, phone);
+        messageClientPort.sendPinSms(createJson(order, phone, pin));
+
+        orderPinPersistencePort.saveOrderPin(new OrderPin(order, pin));
+        orderPersistencePort.saveOrder(order);
     }
 
     @Override

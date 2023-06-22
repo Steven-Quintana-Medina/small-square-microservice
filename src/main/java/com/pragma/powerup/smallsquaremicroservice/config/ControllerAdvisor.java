@@ -6,6 +6,7 @@ import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.exce
 import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.exceptions.UnauthorizedUserException;
 import com.pragma.powerup.smallsquaremicroservice.domain.exceptions.*;
 import feign.FeignException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
@@ -87,7 +88,7 @@ public class ControllerAdvisor {
     }
 
     @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
-    public ResponseEntity<Map<String, String>> handleSQLIntegrityConstraintViolationException() {
+    public ResponseEntity<Map<String, String>> handlerSQLIntegrityConstraintViolationException() {
         return ResponseEntity.status(HttpStatus.CONFLICT)
                 .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, DUPLICATE_VALUE));
     }
@@ -105,20 +106,32 @@ public class ControllerAdvisor {
     }
 
     @ExceptionHandler(AuthenticationException.class)
-    public ResponseEntity<Map<String, String>> handleAuthenticationException() {
+    public ResponseEntity<Map<String, String>> handlerAuthenticationException() {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                 .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, WRONG_CREDENTIALS_MESSAGE));
     }
 
     @ExceptionHandler(InvalidAssignEmployeeOrderException.class)
-    public ResponseEntity<Map<String, String>> handleInvalidAssignEmployeeOrderException(InvalidAssignEmployeeOrderException e) {
+    public ResponseEntity<Map<String, String>> handlerInvalidAssignEmployeeOrderException(InvalidAssignEmployeeOrderException e) {
         return ResponseEntity.status(HttpStatus.CONFLICT)
                 .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, INVALID_ASSIGN_EMPLOYEE_ORDER + e.getIdOrder()));
     }
 
     @ExceptionHandler(OrderNotFoundException.class)
-    public ResponseEntity<Map<String, String>> handleOrderNotFoundException(OrderNotFoundException e) {
+    public ResponseEntity<Map<String, String>> handlerOrderNotFoundException(OrderNotFoundException e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, e.getIdOrder() + ORDER_NOT_FOUND));
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity handlerDataIntegrityViolationExceptionException() {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, RELATION_NOT_FOUND));
+    }
+
+    @ExceptionHandler(OrderAlreadyNotifiedException.class)
+    public ResponseEntity handlerOrderAlreadyNotifiedException() {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, ORDER_ALREADY_NOTIFIED));
     }
 }

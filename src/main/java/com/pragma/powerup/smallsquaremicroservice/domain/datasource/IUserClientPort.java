@@ -4,4 +4,6 @@ public interface IUserClientPort {
     boolean getOwner(Long id);
 
     boolean getEmployee(Long id);
+
+    String getClient(Long id);
 }

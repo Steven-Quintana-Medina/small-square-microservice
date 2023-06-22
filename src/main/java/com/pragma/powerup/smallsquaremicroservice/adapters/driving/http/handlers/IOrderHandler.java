@@ -9,6 +9,8 @@ import java.util.List;
 public interface IOrderHandler {
     void saveOrder(OrderReqDto orderReqDto);
 
+    void updateStatusToReady(Long id);
+
     List<OrderResDto> getRestaurantOrders(int pageNumber, int pageSize, String statusOrder);
 
     List<OrderResDto> assignEmployeeOrder(int pageNumber, int pageSize, String statusOrder, AssignEmployeeOrderDto assignEmployeeOrderDto);
