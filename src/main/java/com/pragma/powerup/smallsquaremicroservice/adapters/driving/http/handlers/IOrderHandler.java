@@ -11,6 +11,8 @@ public interface IOrderHandler {
 
     void updateStatusToReady(Long id);
 
+    void updateStatusToDelivered(String pin);
+
     List<OrderResDto> getRestaurantOrders(int pageNumber, int pageSize, String statusOrder);
 
     List<OrderResDto> assignEmployeeOrder(int pageNumber, int pageSize, String statusOrder, AssignEmployeeOrderDto assignEmployeeOrderDto);

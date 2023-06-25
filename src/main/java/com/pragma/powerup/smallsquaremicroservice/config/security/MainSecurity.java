@@ -38,7 +38,7 @@ public class MainSecurity {
                         .requestMatchers(HttpMethod.GET, "/restaurant/", "/dish").permitAll()
                         .requestMatchers("/restaurant/**").hasRole("ADMIN")
                         .requestMatchers("/restaurantEmployee/**", "/dish/**", "/category/**").hasRole("OWNER")
-                        .requestMatchers("/order/status-ready/").hasRole("EMPLOYEE")
+                        .requestMatchers("/order/**").hasRole("EMPLOYEE")
                         .anyRequest().authenticated()).formLogin().and().httpBasic().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()

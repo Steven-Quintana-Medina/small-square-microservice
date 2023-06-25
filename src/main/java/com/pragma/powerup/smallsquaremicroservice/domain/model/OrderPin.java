@@ -5,6 +5,9 @@ public class OrderPin {
     private Order idOrder;
     private String pin;
 
+    public OrderPin() {
+    }
+
     public OrderPin(Long id, Order idOrder, String pin) {
         this.id = id;
         this.idOrder = idOrder;

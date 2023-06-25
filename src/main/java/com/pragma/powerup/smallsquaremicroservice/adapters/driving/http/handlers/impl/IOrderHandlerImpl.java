@@ -34,6 +34,11 @@ public class IOrderHandlerImpl implements IOrderHandler {
     }
 
     @Override
+    public void updateStatusToDelivered(String pin) {
+        orderServicePort.updateStatusToDelivered(pin);
+    }
+
+    @Override
     public List<OrderResDto> getRestaurantOrders(int pageNumber, int pageSize, String statusOrder) {
         return orderResMapper.toOrderRes(orderServicePort.getRestaurantOrder(pageNumber, pageSize, statusOrder, jwtService.getIdToken(request.getHeader("Authorization"))));
     }

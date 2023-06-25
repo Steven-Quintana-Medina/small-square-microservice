@@ -4,4 +4,5 @@ public enum EnumStatusOrder {
     EN_PREPARACION,
     PENDIENTE,
     LISTO,
+    ENTREGADO
 }
