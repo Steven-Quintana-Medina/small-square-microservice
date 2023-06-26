@@ -7,7 +7,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.Optional;
+
 public interface IOrderRepository extends JpaRepository<OrderEntity, Long> {
     @Query("SELECT o FROM OrderEntity o WHERE o.status = :statusOrder AND o.idRestaurant.id = :idRestaurant")
     Page<OrderEntity> findByIdRestaurant(PageRequest pageable, @Param("statusOrder") String statusOrder, @Param("idRestaurant") Long idRestaurant);
+
+    Optional<OrderEntity> findByIdAndIdClient(Long id, Long idClient);
+
+    Optional<OrderEntity> findByIdAndIdChef(Long id, Long idChef);
 }

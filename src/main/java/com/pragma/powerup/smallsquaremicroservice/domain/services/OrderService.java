@@ -3,6 +3,7 @@ package com.pragma.powerup.smallsquaremicroservice.domain.services;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pragma.powerup.smallsquaremicroservice.domain.enums.EnumStatusOrder;
+import com.pragma.powerup.smallsquaremicroservice.domain.exceptions.NonCancellableOrderException;
 import com.pragma.powerup.smallsquaremicroservice.domain.exceptions.OrderAlreadyNotifiedException;
 import com.pragma.powerup.smallsquaremicroservice.domain.exceptions.OrderNotFoundException;
 import com.pragma.powerup.smallsquaremicroservice.domain.model.MessageJson;
@@ -18,6 +19,14 @@ public class OrderService {
         } else if (order.getStatus().equals(EnumStatusOrder.LISTO)) {
             throw new OrderAlreadyNotifiedException();
         }
+    }
+
+    public static Order validOrderCanceled(Order order) {
+        if (order.getStatus().equals(EnumStatusOrder.PENDIENTE)) {
+            order.setStatus(EnumStatusOrder.CANCELADO);
+            return order;
+        }
+        throw new NonCancellableOrderException();
     }
 
     public static String createJson(Order order, String phone, String pin) {

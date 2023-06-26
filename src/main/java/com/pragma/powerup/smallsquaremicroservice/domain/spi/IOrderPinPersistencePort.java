@@ -5,5 +5,5 @@ import com.pragma.powerup.smallsquaremicroservice.domain.model.OrderPin;
 public interface IOrderPinPersistencePort {
     void saveOrderPin(OrderPin orderPin);
 
-    OrderPin getIdAndeleteOrderPin(String pin);
+    OrderPin getIdAndeleteOrderPin(String pin, Long idEmployee);
 }

@@ -14,6 +14,7 @@ public class Constants {
     public static final String DISH_CREATED_MESSAGE = "Dish created successfully";
     public static final String DISH_UPDATE_MESSAGE = "Dish Update successfully";
     public static final String ORDER_UPDATE_MESSAGE = "Order Update successfully";
+    public static final String ORDER_CANCEL_MESSAGE = "Order Cancel successfully";
     public static final String ASSIGN_RESTAURANT_EMPLOYEE = "assign restaurant an employee";
     //response code 400
     public static final String INVALID_PHONE = "A restaurant has an invalid phone number";
@@ -29,7 +30,7 @@ public class Constants {
     public static final String ORDER_NOT_FOUND = " order not found";
     public static final String DUPLICATE_VALUE = "a value is already registered in the database";
     public static final String RELATION_NOT_FOUND = "No valid resource was found to perform this transaction";
-
+    public static final String NON_CANCELLABLE_ORDER = "We're sorry, your order is already being prepared and cannot be cancelled";
     public static final String ORDER_ALREADY_NOTIFIED = "This order has already been notified to the customer";
 
     //swagger

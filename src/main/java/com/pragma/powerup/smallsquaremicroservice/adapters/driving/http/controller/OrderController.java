@@ -112,4 +112,21 @@ public class OrderController {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY, ORDER_UPDATE_MESSAGE));
     }
+
+    @Operation(summary = "to cancel an order",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = ORDER_CANCEL_MESSAGE,
+                            content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Message"))),
+                    @ApiResponse(responseCode = "404", description = ORDER_NOT_FOUND,
+                            content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error"))),
+                    @ApiResponse(responseCode = "401", description = WRONG_CREDENTIALS_MESSAGE,
+                            content = @Content(mediaType = "application/json", schema = @Schema(ref = "#/components/schemas/Error")))
+
+            })
+    @PutMapping("status-cancel/{id}")
+    public ResponseEntity<Map<String, String>> CancelOrder(@PathVariable Long id) {
+        orderHandler.updateStatusToCancel(id);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(Collections.singletonMap(Constants.RESPONSE_MESSAGE_KEY, ORDER_CANCEL_MESSAGE));
+    }
 }
