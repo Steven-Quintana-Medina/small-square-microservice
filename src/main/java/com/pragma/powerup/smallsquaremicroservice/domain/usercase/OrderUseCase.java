@@ -50,8 +50,8 @@ public class OrderUseCase implements IOrderServicePort {
     }
 
     @Override
-    public void updateStatusToReady(Long id) {
-        Order order = orderPersistencePort.getOrder(id);
+    public void updateStatusToReady(Long id,Long idEmoployee) {
+        Order order = orderPersistencePort.getOrderEmployee(id,idEmoployee);
         validOrderReady(order, id);
         order.setStatus(EnumStatusOrder.LISTO);
         String phone = userClientPort.getClient(order.getIdClient());
@@ -106,10 +106,17 @@ public class OrderUseCase implements IOrderServicePort {
     }
 
     @Override
-    public void updateStatusToDelivered(String pin) {
-        OrderPin orderPin = orderPinPersistencePort.getIdAndeleteOrderPin(pin);
+    public void updateStatusToDelivered(String pin, Long idEmployee) {
+        OrderPin orderPin = orderPinPersistencePort.getIdAndeleteOrderPin(pin, idEmployee);
         orderPin.getIdOrder().setStatus(EnumStatusOrder.ENTREGADO);
         orderPersistencePort.saveOrder(orderPin.getIdOrder());
+    }
+
+    @Override
+    public void updateStatusToCancel(Long idOrder, Long idClient) {
+        Order order = orderPersistencePort.getOrderClient(idOrder,idClient);
+        orderPersistencePort.saveOrder(validOrderCanceled(idOrder,order));
+
     }
 }
 

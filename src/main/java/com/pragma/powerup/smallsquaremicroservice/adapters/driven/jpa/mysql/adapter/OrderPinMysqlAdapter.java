@@ -1,6 +1,5 @@
 package com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.adapter;
 
-
 import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.entity.OrderPinEntity;
 import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.exceptions.PinNotFoundException;
 import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.mappers.IOrderPinEntityMapper;
@@ -20,8 +19,8 @@ public class OrderPinMysqlAdapter implements IOrderPinPersistencePort {
     }
 
     @Override
-    public OrderPin getIdAndeleteOrderPin(String pin) {
-        OrderPinEntity orderPin = orderPinRepository.findByPin(pin).orElseThrow(PinNotFoundException::new);
+    public OrderPin getIdAndeleteOrderPin(String pin, Long idEmployee) {
+        OrderPinEntity orderPin = orderPinRepository.findByPin(pin,idEmployee).orElseThrow(PinNotFoundException::new);
         orderPinRepository.deleteById(orderPin.getId());
         return orderPinEntityMapper.toModel(orderPin);
     }

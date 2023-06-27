@@ -33,8 +33,14 @@ public class OrderMysqlAdapter implements IOrderPersistencePort {
     }
 
     @Override
-    public Order getOrder(Long id) {
-        Optional<OrderEntity> order = orderRepository.findById(id);
+    public Order getOrderEmployee(Long idOrder, Long idChef) {
+        Optional<OrderEntity> order = orderRepository.findByIdAndIdChef(idOrder,idChef);
+        return orderEntityMapper.toOrder(order.orElse(null));
+    }
+
+    @Override
+    public Order getOrderClient(Long idOrder,Long idClient) {
+        Optional<OrderEntity> order = orderRepository.findByIdAndIdClient(idOrder,idClient);
         return orderEntityMapper.toOrder(order.orElse(null));
     }
 }

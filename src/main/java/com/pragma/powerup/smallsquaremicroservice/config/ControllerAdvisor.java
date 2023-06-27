@@ -132,6 +132,12 @@ public class ControllerAdvisor {
                 .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, ORDER_ALREADY_NOTIFIED));
     }
 
+    @ExceptionHandler(NonCancellableOrderException.class)
+    public ResponseEntity<Map<String, String>> handlerNonCancellableOrderException() {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, NON_CANCELLABLE_ORDER));
+    }
+
     @ExceptionHandler(PinNotFoundException.class)
     public ResponseEntity<Map<String, String>> handlerOrderNotFoundException() {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
