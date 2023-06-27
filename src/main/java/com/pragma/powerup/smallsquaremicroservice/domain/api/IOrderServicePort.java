@@ -9,6 +9,7 @@ public interface IOrderServicePort {
 
     void updateStatusToReady(Long id);
 
+    void updateStatusToDelivered(String pin);
     List<Order> getRestaurantOrder(int pageNumber, int pageSize, String statusOrder, Long idEmployee);
 
     List<Order> assignEmployeeOrder(int pageNumber, int pageSize, String statusOrder, List<Long> idOrders, Long idEmployee);

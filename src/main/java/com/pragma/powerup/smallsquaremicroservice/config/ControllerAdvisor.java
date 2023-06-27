@@ -1,9 +1,6 @@
 package com.pragma.powerup.smallsquaremicroservice.config;
 
-import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.exceptions.CategoryNotFoundException;
-import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.exceptions.NitAlreadyExistsException;
-import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.exceptions.PhoneAlreadyExistsException;
-import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.exceptions.UnauthorizedUserException;
+import com.pragma.powerup.smallsquaremicroservice.adapters.driven.jpa.mysql.exceptions.*;
 import com.pragma.powerup.smallsquaremicroservice.domain.exceptions.*;
 import feign.FeignException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -124,14 +121,20 @@ public class ControllerAdvisor {
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)
-    public ResponseEntity handlerDataIntegrityViolationExceptionException() {
+    public ResponseEntity<Map<String, String>> handlerDataIntegrityViolationExceptionException() {
         return ResponseEntity.status(HttpStatus.CONFLICT)
                 .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, RELATION_NOT_FOUND));
     }
 
     @ExceptionHandler(OrderAlreadyNotifiedException.class)
-    public ResponseEntity handlerOrderAlreadyNotifiedException() {
+    public ResponseEntity<Map<String, String>> handlerOrderAlreadyNotifiedException() {
         return ResponseEntity.status(HttpStatus.CONFLICT)
                 .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, ORDER_ALREADY_NOTIFIED));
+    }
+
+    @ExceptionHandler(PinNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handlerOrderNotFoundException() {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(Collections.singletonMap(RESPONSE_ERROR_MESSAGE_KEY, ORDER_NOT_FOUND));
     }
 }

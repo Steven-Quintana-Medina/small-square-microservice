@@ -10,6 +10,7 @@ public interface IOrderHandler {
     void saveOrder(OrderReqDto orderReqDto);
 
     void updateStatusToReady(Long id);
+    void updateStatusToDelivered(String pin);
 
     List<OrderResDto> getRestaurantOrders(int pageNumber, int pageSize, String statusOrder);
 

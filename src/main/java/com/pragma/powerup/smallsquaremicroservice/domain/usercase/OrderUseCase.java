@@ -104,5 +104,12 @@ public class OrderUseCase implements IOrderServicePort {
         orderPersistencePort.saveOrderAll(orders);
         return orders;
     }
+
+    @Override
+    public void updateStatusToDelivered(String pin) {
+        OrderPin orderPin = orderPinPersistencePort.getIdAndeleteOrderPin(pin);
+        orderPin.getIdOrder().setStatus(EnumStatusOrder.ENTREGADO);
+        orderPersistencePort.saveOrder(orderPin.getIdOrder());
+    }
 }
 

@@ -12,4 +12,7 @@ import org.mapstruct.ReportingPolicy;
 public interface IOrderPinEntityMapper {
     @Mapping(target = "idOrder.id", source = "idOrder.id")
     OrderPinEntity toEntity(OrderPin orderPin);
+
+    @Mapping(target = "idOrder.id", source = "idOrder.id")
+    OrderPin toModel(OrderPinEntity orderPinEntity);
 }
