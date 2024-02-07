@@ -50,8 +50,8 @@ public class OrderUseCase implements IOrderServicePort {
     }
 
     @Override
-    public void updateStatusToReady(Long id,Long idEmoployee) {
-        Order order = orderPersistencePort.getOrderEmployee(id,idEmoployee);
+    public void updateStatusToReady(Long id,Long idEmployee) {
+        Order order = orderPersistencePort.getOrderEmployee(id,idEmployee);
         validOrderReady(order, id);
         order.setStatus(EnumStatusOrder.LISTO);
         String phone = userClientPort.getClient(order.getIdClient());
